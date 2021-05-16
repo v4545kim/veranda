@@ -1,0 +1,474 @@
+-- 관리자에서 쓰세요
+-- 사용자 삭제
+-- drop user dream cascade ;
+
+-- 사용자 생성
+--create user dream identified by oracle account unlock ;
+
+--alter user dream default tablespace users ;
+
+-- 권한 부여하기
+--grant connect, resource to dream ;
+
+
+
+
+--drop table follows purge ;
+--drop table community_keywords purge ;
+--drop sequence com_keyseq ;
+--drop table product_keywords purge ;
+--drop sequence prod_keyseq ;
+--drop table qna_comments purge ;
+--drop sequence qna_commseq ;
+--drop table qnas purge ;
+--drop sequence qnaseq;
+--drop table community_comments purge ;
+--drop sequence community_commseq ;
+--drop table communities purge ;
+--drop sequence communityseq;
+--drop table product_comments purge ;
+--drop sequence product_commseq ;
+--drop table products purge ;
+--drop sequence productseq;
+--drop table notices purge ;
+--drop sequence noticeseq ;
+--drop table members purge ;
+--drop sequence memseq ;
+
+
+
+
+
+
+
+
+
+
+-- 드림에서 쓰세요
+--------------------------------------------------------------------------------
+-- 회원 테이블
+--------------------------------------------------------------------------------
+create sequence memseq start with 1 increment by 1 nocache ;
+--drop sequence memseq ;
+create table members(
+	user_no number primary key,
+	user_id varchar2(20) not null,
+	user_pwd varchar2(20) not null,
+    user_name varchar2(30) not null,
+	user_nickname varchar2(24) not null,
+	user_email varchar2(45) not null,
+	user_phone varchar2(13) not null,
+	user_address varchar2(150) not null,
+	user_birth varchar2(11) not null,
+	user_gender varchar2(6) not null
+) ;
+--drop table members purge ;
+
+
+
+insert into members(user_no, user_id, user_pwd , user_name, user_nickname, user_email, user_phone,  user_address, user_birth, user_gender)
+values(memseq.nextval, 'kimjiwon1111', 'jiwon1234', '김지원', '흰둥맘', 'nxsxn@daum.net', '010-3130-2822', '전북 전주시','1994-01-31' , '여');
+
+insert into members(user_no, user_id, user_pwd , user_name, user_nickname, user_email, user_phone,  user_address, user_birth, user_gender)
+values(memseq.nextval, 'qwejiwon2222', 'qwe1234', '김민아', '흰둥이', 'mxsxm@daum.net', '010-3130-3833', '광주광역시','1994-03-31' , '여');
+
+insert into members(user_no, user_id, user_pwd , user_name, user_nickname, user_email, user_phone,  user_address, user_birth, user_gender)
+values(memseq.nextval, 'son2222', 'son1234', '손민아', '쥐', 'pxsxp@daum.net', '010-2220-3833', '전북 익산시','1995-02-01' , '여');
+
+insert into members(user_no, user_id, user_pwd , user_name, user_nickname, user_email, user_phone,  user_address, user_birth, user_gender)
+values(memseq.nextval, 'kim2222', 'kim1234', '김순섭', '쥐야', 'kxsxk@daum.net', '010-6666-3833', '전북 남원시','1996-02-01' , '남');
+
+
+
+
+
+
+--------------------------------------------------------------------------------
+-- 공지사항 테이블
+--------------------------------------------------------------------------------
+create sequence noticeseq start with 1 increment by 1 nocache ;
+--drop sequence noticeseq ;
+create table notices(
+	notice_no number primary key,
+	user_no number not null,
+    notice_title varchar2(60) not null,
+	notice_content varchar2(4000) not null,
+	notice_date date default sysdate not null
+) ;
+--drop table notices purge ;
+
+
+--회원 테이블 user_no 와 공지사항 테이블 user_no 포린키 연결
+alter table notices
+add constraint notices_fk
+foreign key(user_no) references members(user_no) 
+on delete cascade  ;
+
+
+
+
+
+    
+insert into notices(notice_no, user_no, notice_title, notice_content, notice_date)
+values( noticeseq.nextval , 1, '반갑습니다', '베란다에서 온 파프리카 프로젝트 시작합니다', sysdate) ;
+    
+INSERT INTO notices ( notice_no, user_no,notice_title,notice_content,notice_date)
+VALUES (noticeseq.NEXTVAL,1,'주요 공지사항','읽어주세요', sysdate);
+
+INSERT INTO notices (notice_no, user_no,notice_title,notice_content,  notice_date)
+VALUES (noticeseq.NEXTVAL,1,'거래시 유의','조심조심', sysdate);
+
+
+
+
+
+
+--------------------------------------------------------------------------------
+-- 상품 게시판 테이블
+--------------------------------------------------------------------------------
+create sequence productseq start with 1 increment by 1 nocache ;
+--drop sequence productseq;
+create table products(
+	prod_no number primary key,
+	user_no number,
+	prod_title varchar2(60) not null,
+	prod_content varchar2(4000) not null,
+	prod_date date default sysdate not null,
+	prod_readhit number default 0 not null,
+	pord_image1 varchar2(144) not null,
+	pord_image2 varchar2(144),
+	pord_image3 varchar2(144),
+	pord_image4 varchar2(144),
+	pord_image5 varchar2(144),
+	pord_image6 varchar2(144),
+	pord_image7 varchar2(144),
+	pord_image8 varchar2(144),
+	pord_image9 varchar2(144),
+	pord_image10 varchar2(144),
+    prod_state number default 0 not null
+) ;
+--drop table products purge ;
+
+
+--회원 테이블 user_no 와 상품 게시판 테이블 user_no 포린키 연결
+alter table products
+add constraint products_fk
+foreign key(user_no) references members(user_no) 
+on delete set null  ;
+
+
+
+
+
+
+insert into products values(productseq.nextval, '1', '1번 상품', 'abc', default, default, 'abc', 'abc', 'abc', 'abc', 'abc', 'abc', 'abc', 'abc', 'abc', 'abc', default);
+insert into products values(productseq.nextval, '1', '2번 상품', 'def', default, default, 'def', 'def', 'def', 'abc', 'def', 'abc', 'abc', 'abc', 'abc', 'abc', default);
+insert into products values(productseq.nextval, '2', '3번 상품', 'abc', default, default, 'def', 'abc', 'abc', 'abc', 'abc', 'abc', 'abc', 'abc', 'abc', 'abc', default);
+
+
+
+
+
+
+
+
+
+--------------------------------------------------------------------------------
+-- 상품 댓글 테이블
+--------------------------------------------------------------------------------
+create sequence product_commseq start with 1 increment by 1 nocache ;
+--drop sequence product_commseq ;
+create table product_comments(
+	productcomm_no number primary key,
+	prod_no number not null,
+    user_no number,
+	comm_date date default sysdate not null,
+	comm_content varchar2(1000) not null
+) ;
+--drop table product_comments purge ;
+
+
+-- 상품 게시판 테이블 prod_no 와 상품 댓글 테이블 product_no 포린키 연결
+alter table product_comments
+add constraint product_comments_fk
+foreign key(prod_no) references products(prod_no) 
+on delete set null  ;
+
+--회원 테이블 user_no 와 상품 댓글 테이블 user_no 포린키 연결
+alter table product_comments
+add constraint product_comments_id_fk
+foreign key(user_no) references members(user_no) 
+on delete set null  ;
+
+
+
+
+
+
+
+
+insert into product_comments values(product_commseq.nextval, '1', '2', default, '1번째 글 댓글(2번회원)');
+insert into product_comments values(product_commseq.nextval, '2', '3', default, '2번째 글 댓글(3번회원)');
+insert into product_comments values(product_commseq.nextval, '3', '1', default, '3번째 글 댓글(1번회원)');
+
+
+
+
+
+
+
+--------------------------------------------------------------------------------
+-- 커뮤니티 게시판 테이블
+--------------------------------------------------------------------------------
+create sequence communityseq start with 1 increment by 1 nocache ;
+--drop sequence communityseq;
+create table communities(
+	com_no number primary key,
+	user_no number not null,
+	com_title varchar2(60) not null,
+	com_content varchar2(4000) not null,
+    com_category varchar2(30) not null,
+	com_date date default sysdate not null,
+	com_readhit number default 0 not null,
+    com_like number default 0 not null,
+    com_hate number default 0 not null,
+	com_image1 varchar2(144),
+	com_image2 varchar2(144),
+	com_image3 varchar2(144),
+	com_image4 varchar2(144),
+	com_image5 varchar2(144),
+	com_image6 varchar2(144),
+	com_image7 varchar2(144),
+	com_image8 varchar2(144),
+	com_image9 varchar2(144),
+	com_image10 varchar2(144)
+) ;
+--drop table communities purge ;
+
+
+--회원 테이블 user_no 와 커뮤니티 게시판 테이블 user_no 포린키 연결
+alter table communities
+add constraint communities_fk
+foreign key(user_no) references members(user_no) 
+on delete cascade  ;
+
+
+
+
+INSERT INTO communities (  com_no,  user_no,  com_title, com_content,  com_category,  com_date,  com_readhit,  com_like,  com_hate) 
+VALUES ( communityseq.NEXTVAL, 2,  '우리집 베란다를 자랑합니다',  '짜자잔 참 멋지죠?? ',  '베란다뽐내기방',  sysdate, DEFAULT, DEFAULT, DEFAULT);
+
+INSERT INTO communities (  com_no,  user_no,  com_title, com_content,  com_category,  com_date,  com_readhit,  com_like,  com_hate) 
+VALUES ( communityseq.NEXTVAL,  2,  '사실 텃밭도 있답니다', '호호호 참 멋지죠?? ',  '베란다뽐내기방',  sysdate, DEFAULT, DEFAULT, DEFAULT);
+
+INSERT INTO communities (  com_no,  user_no,  com_title, com_content,  com_category,  com_date,  com_readhit,  com_like,  com_hate) 
+VALUES ( communityseq.NEXTVAL,  3,  '이웃과 거래! 재밌어요',  '상추도 싱싱하고 이웃과 대화가 늘어 재밌어요~~',  '구매후기방',  sysdate, DEFAULT, DEFAULT, DEFAULT);
+
+
+
+
+
+
+
+--------------------------------------------------------------------------------
+-- 커뮤니티 댓글 테이블
+--------------------------------------------------------------------------------
+create sequence community_commseq start with 1 increment by 1 nocache ;
+--drop sequence community_commseq ;
+create table community_comments(
+	com_comm_no number primary key,
+	com_no number not null,
+    user_no number not null,
+	comm_date date default sysdate not null,
+	comm_content varchar2(1000) not null
+) ;
+--drop table community_comments purge ;
+
+
+-- 커뮤니티 게시판 테이블 com_no 와 커뮤니티 댓글 테이블 com_no 포린키 연결
+alter table community_comments
+add constraint community_comments_fk
+foreign key(com_no) references communities(com_no) 
+on delete cascade  ;
+
+--회원 테이블 user_no 와 커뮤니티 댓글 테이블 user_no 포린키 연결
+alter table community_comments
+add constraint community_comments_id_fk
+foreign key(user_no) references members(user_no) 
+on delete cascade  ;
+
+
+
+insert into community_comments values(community_commseq.nextval, 1, 2, default, '1~2일 이내 답글 드리겠습니다');
+insert into community_comments values(community_commseq.nextval, 1, 2, default, '유선으로 안내 드리겠습니다');
+
+
+
+
+
+--------------------------------------------------------------------------------
+-- Q&A 게시판 테이블
+--------------------------------------------------------------------------------
+create sequence qnaseq start with 1 increment by 1 nocache ;
+--drop sequence qnaseq;
+create table qnas(
+	qna_no number primary key,
+	user_no number not null,
+	qna_title varchar2(60) not null,
+	qna_content varchar2(4000) not null,
+    qna_category varchar2(30) not null,
+	qna_date date default sysdate not null
+) ;
+--drop table qnas purge ;
+
+
+--회원 테이블 user_no 와 Q&A 게시판 테이블 user_no 포린키 연결
+alter table qnas
+add constraint qnas_fk
+foreign key(user_no) references members(user_no) 
+on delete cascade  ;
+
+
+insert into qnas(qna_no, user_no, qna_title, qna_content, qna_category, qna_date)
+values(qnaseq.nextval,2,'사이트가 불편해요','내용은 제목과 같습니다','불편사항',sysdate);
+
+insert into qnas(qna_no, user_no, qna_title, qna_content, qna_category, qna_date)
+values(qnaseq.nextval,4,'글 삭제는 어떻게 하나요?','내용은 제목과 같습니다','이용문의',sysdate);
+
+
+
+
+
+
+
+--------------------------------------------------------------------------------
+-- Q&A 댓글 테이블
+--------------------------------------------------------------------------------
+create sequence qna_commseq start with 1 increment by 1 nocache ;
+--drop sequence qna_commseq ;
+create table qna_comments(
+	qna_comm_no number primary key,
+	qna_no number not null,
+    user_no number not null,
+	qna_date date default sysdate not null,
+	qna_content varchar2(1000) not null
+) ;
+--drop table qna_comments purge ;
+
+
+-- Q&A 게시판 테이블 qna_no 와 Q&A 댓글 테이블 qna_no 포린키 연결
+alter table qna_comments
+add constraint qna_comments_fk
+foreign key(qna_no) references qnas(qna_no) 
+on delete cascade  ;
+
+
+--회원 테이블 user_no 와 Q&A 댓글 테이블 user_no 포린키 연결
+alter table qna_comments
+add constraint qna_comments_id_fk
+foreign key(user_no) references members(user_no) 
+on delete cascade  ;
+
+
+
+
+insert into qna_comments values(qna_commseq.nextval, 1, 2, default, '1~2일 이내 답글 드리겠습니다');
+insert into qna_comments values(qna_commseq.nextval, 1, 2, default, '유선으로 안내 드리겠습니다');
+
+
+
+
+
+
+--------------------------------------------------------------------------------
+-- 상품 키워드 테이블
+--------------------------------------------------------------------------------
+create sequence prod_keyseq start with 1 increment by 1 nocache ;
+--drop sequence prod_keyseq ;
+create table product_keywords(
+	key_seq number primary key,
+    key_count number default 0 not null,
+    key_content varchar2(30) not null
+) ;
+--drop table product_keywords purge ;
+
+insert into product_keywords (key_seq, key_count, key_content)
+values(prod_keyseq.NEXTVAL, default, '상추');
+
+insert into product_keywords (key_seq, key_count, key_content)
+values(prod_keyseq.NEXTVAL, default, '파프리카');
+
+insert into product_keywords (key_seq, key_count, key_content)
+values(prod_keyseq.NEXTVAL, default, '방울토마토');
+
+
+
+
+
+
+
+--------------------------------------------------------------------------------
+-- 커뮤니티 키워드 테이블
+--------------------------------------------------------------------------------
+create sequence com_keyseq start with 1 increment by 1 nocache ;
+--drop sequence com_keyseq ;
+create table community_keywords(
+	key_seq number primary key,
+    key_count number default 0 not null,
+    key_content varchar2(30) not null
+) ;
+--drop table community_keywords purge ;
+
+
+
+insert into community_keywords (key_seq, key_count, key_content)
+values(com_keyseq.NEXTVAL, default, '자유');
+
+insert into community_keywords (key_seq, key_count, key_content)
+values(com_keyseq.NEXTVAL, default, '베란다');
+
+insert into community_keywords (key_seq, key_count, key_content)
+values(com_keyseq.NEXTVAL, default, '방울토마토');
+
+
+
+
+
+
+--------------------------------------------------------------------------------
+-- 팔로우 테이블
+--------------------------------------------------------------------------------
+create table follows(
+	follower_no number not null,
+    followee_no number not null,
+    follow_state number default 0 not null,
+    constraint myfollows primary key(follower_no, followee_no)
+) ;
+--drop table follows purge ;
+
+
+
+alter table follows
+add constraint follower
+foreign key(follower_no) references Members(user_no) on delete cascade  ;
+
+alter table follows
+add constraint followee
+foreign key(followee_no) references Members(user_no) on delete cascade  ;
+
+
+
+
+
+
+
+insert into follows(follower_no, followee_no, follow_state)
+values(1,2,1);
+
+insert into follows(follower_no, followee_no, follow_state)
+values(2,1,1);
+
+insert into follows(follower_no, followee_no, follow_state)
+values(1,3,1);
+
+commit ;
