@@ -9,17 +9,17 @@ import javax.servlet.http.HttpServletResponse;
 import com.veranda.common.controller.SuperClass;
 
 public class MemberLogoutController extends SuperClass{
-	
-	@Override
-	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		super.doGet(request, response);
-		
-	}
-	
-	@Override
-	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		super.doPost(request, response);
-		
-	}
+   
+   @Override
+   public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+      super.doGet(request, response);
+      
+      super.session.invalidate(); 
+      
+      String gotopage = "/members/meLogin.jsp" ;
+      
+      super.GotoPage(gotopage);
+   }
+   
 
 }

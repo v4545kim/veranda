@@ -41,7 +41,7 @@ public class MemberLoginController extends SuperClass{
       }
             
       return isCheck ;
-   }
+   } 
    
    @Override
    public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -56,22 +56,27 @@ public class MemberLoginController extends SuperClass{
       String gotopage = "" ;
       
       if (this.validate(request) == true) {
+        System.out.println("user");
          System.out.println("유효성 검사에 문제 없음");
          
          MemberDao dao = new MemberDao();
          Member bean = dao.SelectData(user_id, user_pwd) ;
-         
+     
          if (bean == null) { 
             System.out.println("로그인 실패");
             String message = "아이디나 비밀 번호가 잘못되었습니다." ;
             super.setErrorMessage(message);
-            gotopage = "/members/meLogin.jsp" ;
+            gotopage = "/members/main.jsp" ;
             super.GotoPage(gotopage);             
          } else { 
             System.out.println("로그인 성공");
             // 로그인 정보를 세션에 바인딩
+            
             super.session.setAttribute("loginfo", bean);
+            
             gotopage = "/common/main.jsp" ;
+            
+            super.GotoPage(gotopage);
          }
          
                } else { // 문제가 있음
@@ -80,7 +85,7 @@ public class MemberLoginController extends SuperClass{
          request.setAttribute("user_pwd", this.user_pwd);
          
          gotopage = "/members/meLogin.jsp" ;
-         super.GotoPage(gotopage); 
+         super.GotoPage(gotopage);  
       }
    }
 }

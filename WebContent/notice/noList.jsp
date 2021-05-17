@@ -16,19 +16,22 @@
       function search(){
          var mode = $('#mode').val() ;
          var keyword = $('#keyword').val() ;
-         location.href='<%=FormNo%>noList' + '&mode=' + mode + '&keyword=' + keyword ;
+         location.href='<%=FormNo%>qnaList' + '&mode=' + mode + '&keyword=' + keyword ;
       }
       function searchAll(){
-         location.href='<%=FormNo%>noList';
+         location.href='<%=FormNo%>qnaList';
       }
       function writeForm(){
-         location.href='<%=FormNo%>noInsert';
+         location.href='<%=FormNo%>qnaInsert';
       }
       
       $(document).ready(function(){
          
       });
-
+      
+      
+      
+      
       
       function checkForm() {
          /* 제목 길이 체크 */
@@ -66,20 +69,6 @@
          }
       }
    </script>
-<style type="text/css">
-   .checkout__input_2 input{
-      height: 350px;
-      width: 100%;
-      border: 1px solid #e1e1e1;
-      font-size: 14px;
-      color: #666666;
-      padding-left: 20px;
-      margin-bottom: 20px;
-   }
-   .checkout__input_2 p span {
-        color: #f08632;
-   }
-</style>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="css/bootstrap.min2.css" type="text/css">
 </head>
@@ -93,29 +82,30 @@
          <table class="table table-hover">
             <thead>
                <tr>
-                  <th scope="col">글 번호</th>                  
+                  <th scope="col">글 번호</th>
+                  
                   <th scope="col" colspan="2">글 제목</th>
-                  <th scope="col">작성일자</th>
+                  <th scope="col">날짜</th>
                </tr>
             </thead>
             <tbody>
-               <c:forEach var="bean" items="${requestScope.lists}">   
-                  <tr class="table-active">
+               <c:forEach var="bean" items="${requestScope.lists}">
+                  <tr>
                      <th scope="row">${bean.no}</th>
-                     <td colspan="2">${bean.title}</td>
+                     
+                     <td colspan="2"><a href="<%=FormNo%>noDetailView&no=${bean.no}">${bean.title}</a></td>
                      <td>${bean.date}</td>
                   </tr>
                </c:forEach>
-            
                <tr>
                   <td align="center" colspan="4">
                      <form action="" class="form-inline" role="form" name="myform" method="get"> 
                         <div class="form-group">
                            <select id="mode" name="mode" class="form-control">
                               <option value="all" selected="selected">선택하세요.
-                              <option >제목
-                              <option >제목+내용
-                        
+                              <option>제목
+                              <option>제목+내용
+                           
                            </select>
                         </div>
                         &nbsp;&nbsp;
@@ -129,14 +119,16 @@
                      </form>
                   </td>
                   <td>
-               <%--    <c:if test="${whologin == 2}"> 글쓰기 테스트위해 잠시 막아둠--%>
-                              <button class="btn btn-default" type="button"
-                                 onclick="writeForm();">글 등록</button>
-                  <%--   </c:if>--%>
+                     <button class="btn btn-default" type="button" onclick="writeForm();">
+                        글 등록
+                     </button>
                   </td>
                </tr>
             </tbody>
          </table>
+         <div align="center">
+            <footer>${pageInfo.pagingHtml}</footer>
+         </div>
       </div>
    </div>
    <br><br><br><br>
@@ -151,6 +143,8 @@
       $('#keyword').val('${pageInfo.keyword}');
    </script>
    <br>
+   <!-- 게시판 리스트 끝 -->
 
 </body>
 </html>
+<jsp:include page="/common/footer.jsp"></jsp:include>

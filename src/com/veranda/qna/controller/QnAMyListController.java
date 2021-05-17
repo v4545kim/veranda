@@ -13,50 +13,42 @@ import com.veranda.common.utility.Paging;
 import com.veranda.qna.dao.QnADao;
 import com.veranda.qna.vo.QnA;
 
-public class QnAListController extends SuperClass{
+public class QnAMyListController extends SuperClass{
 
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		super.doGet(request, response);
 		
-		FlowParameters parameters
-		= new FlowParameters(
-				request.getParameter("pageNumber"), 
-				request.getParameter("mode"), 
-				request.getParameter("keyword"));
-		
-		System.out.println("parameter list : ");
-		System.out.println(parameters.toString());
+		String pageNumber = "1";
+		String mode = "all";
+		String keyword = "";
 		
 		String contextPath = request.getContextPath();
 		String url = contextPath + "/veranda?command=qnaList";
 		
 		QnADao dao = new QnADao();
 		
-		int totalCount = dao.SelectTotalCount(parameters.getMode(), parameters.getKeyword());
+		int totalCount = dao.SelectTotalCount(mode, keyword);
 		System.out.println("total data size : " + totalCount);
 		
+		
+		
 		Paging pageInfo = new Paging(
-				parameters.getPageNumber(), 
-				totalCount, 
+				pageNumber, 
+				5,
 				url,
-				parameters.getMode(), 
-				parameters.getKeyword());
+				mode, 
+				keyword);
 		
 		List<QnA> lists = dao.SelectDataList(
-				pageInfo.getBeginRow(), 
-				pageInfo.getEndRow(), 
-				parameters.getMode(), 
-				parameters.getKeyword());
+				1, 
+				5, 
+				mode, 
+				keyword);
 		System.out.println("qna list count : " + lists.size());
 		
-		request.setAttribute("lists", lists);
+		request.setAttribute("qnalists", lists);
 		request.setAttribute("pageInfo", pageInfo);
-		
-		request.setAttribute("parameters", parameters.toString());
-		
-		String gotopage = "/qna/qnaList.jsp";
-		super.GotoPage(gotopage);
 	}
 	
 	@Override

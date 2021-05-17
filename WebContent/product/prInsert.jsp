@@ -78,34 +78,42 @@ int formright = twelve - formleft;
                            <div class="checkout__input">
                                         <p>카테고리<span>*</span></p>
                                         <div>
-                                         <select id="category" name="category" class="form">
+                                         <select id="state" name="state" class="form">
                                             <option value="-" selected="selected">선택하세요
-                                            <option value="">자유게시판
-                                            <option value="">정보공유방
-                                            <option value="">구매후기방
-                                            <option value="">베란다뽐내기방
+                                            <option value="1">자유게시판
+                                            <option value="2">정보공유방
+                                            <option value="3">구매후기방
+                                            <option value="4">베란다뽐내기방
                                                     
                                          </select>
                                       </div>
                                     </div>
                                 </div>
                             </div>
+                            <div class="input-div">
                             <div class="checkout__input_2">
-                                <p>글 내용<span>*</span></p>
-                                <input type="text" name="content" id="content" width="400" height="300">
-                            </div>
-                            <button type="submit" class="site-btn" onclick="return checkForm();">
-                               등록
-                            </button>
+                               <p>
+                              글 내용
+                                 <span>
+                                    *
+                                 </span>
+                           </p>
+                           <textarea name="content" rows="10" cols="125" style="resize: none;"></textarea>
                         </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </section>
-    <!-- Checkout Section End -->
+                     </div>
+                     <br>
+                     <button type="submit" class="site-btn" onclick="return checkForm();">
+                        등록
+                     </button>
+                  </div>
+               </div>
+            </form>
+         </div>
+      </div>
+   </section>
+   <!-- Checkout Section End -->
 
    <!-- 게시판 입력 폼 끝 -->
 </body>
 </html>
-
+<jsp:include page="/common/footer.jsp"></jsp:include>

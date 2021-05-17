@@ -1,9 +1,11 @@
+common
+
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%
-	int twelve = 12 ;
+   int twelve = 12 ;
 %>
 <!DOCTYPE>
 <html>
@@ -36,34 +38,34 @@
     <link rel="stylesheet" href="css/style.css" type="text/css">
     
     <!-- 로그인 상태 정보 -->
-	<c:set var="whologin" value="0"/>
-	
-	<!-- 미로그인 상태 -->
-	<c:if test="${empty sessionScope.loginfo}">
-		<c:set var="whologin" value="0"/>
-	</c:if>
-	
-	<c:if test="${not empty sessionScope.loginfo}">
-		<!-- 관리자 로그인 상태 -->
-		<c:if test="${sessionScope.loginfo.id == 'admin'}">
-			<c:set var="whologin" value="2"/>
-		</c:if>
-		
-		<!-- 회원 로그인 상태 -->
-		<c:if test="${sessionScope.loginfo.id != 'admin'}">
-			<c:set var="whologin" value="1"/>
-		</c:if>
-	</c:if>	
+   <c:set var="whologin" value="0"/>
+   
+   <!-- 미로그인 상태 -->
+   <c:if test="${empty sessionScope.loginfo}">
+      <c:set var="whologin" value="0"/>
+   </c:if>
+   
+   <c:if test="${not empty sessionScope.loginfo}">
+      <!-- 관리자 로그인 상태 -->
+      <c:if test="${sessionScope.loginfo.user_id == 'admin'}">
+         <c:set var="whologin" value="2"/>
+      </c:if>
+      
+      <!-- 회원 로그인 상태 -->
+      <c:if test="${sessionScope.loginfo.user_id != 'admin'}">
+         <c:set var="whologin" value="1"/>
+      </c:if>
+   </c:if>   
 </head>
 <body>
-<%	
-	String contextPath = request.getContextPath();
-	String mappingName = "/veranda";
-	
-	String FormYes = contextPath + mappingName;
-	String FormNo = contextPath + mappingName + "?command=";
+<%   
+   String contextPath = request.getContextPath();
+   String mappingName = "/veranda";
+   
+   String FormYes = contextPath + mappingName;
+   String FormNo = contextPath + mappingName + "?command=";
 %>
-	<header class="header">
+   <header class="header">
         <div class="header__top">
             <div class="container">
                 <div class="row">
@@ -75,95 +77,118 @@
                             <div class="header__top__left">
                                 <div class="header__top__right__links">
                                     <ul>
-										<li>
-											<c:if test="${whologin == 0}">
-												<a href="<%=FormNo%>meLogin">
-													로그인
-												</a>
-												<a href="<%=FormNo%>meInsert">
-													회원 가입
-												</a>
-												<a href="<%=FormNo%>myPage">
-													마이 페이지
-												</a>
-											</c:if>
-											<c:if test="${whologin != 0}">
-												<a href="<%=FormNo%>meLogout">
-													로그아웃
-												</a>
-												<a href="<%=FormNo%>meUpdate">
-													회원 정보 수정
-												</a>	
-											</c:if>
-											<c:if test="${whologin == 1}">
-												<a href="<%=FormNo%>meDelete&id=${sessionScope.loginfo.id}">
-													회원 탈퇴
-												</a>
-											</c:if>
-											<c:if test="${whologin == 2}">
-												<a href="<%=FormNo%>meList">
-													회원 목록 보기
-												</a>
-											</c:if>
-										</li>
-									</ul>
+                                    <li>
+                  <a href="#" class="dropdown-toggle"> 
+                     <font color='white'>
+                        <c:if test="${whologin == 0}">
+                           미로그인
+                        </c:if>
+                        <c:if test="${whologin != 0}">
+                           ${sessionScope.loginfo.user_name}(${sessionScope.loginfo.user_id}) 님
+                        </c:if>
+                     </font>
+                  </a>
+               </li>
+                              <li>
+                              <a href="<%=FormNo%>meLogin">
+                                       로그인
+                                    </a>
+                                 <c:if test="${whologin == 0}">
+                                    <a href="<%=FormNo%>meLogin">
+                                       로그인
+                                    </a>
+                                    <a href="<%=FormNo%>meInsert">
+                                       회원 가입
+                                    </a>
+                                    <a href="<%=FormNo%>myPage">
+                                       마이 페이지
+                                    </a>
+                                 </c:if>
+                                 <c:if test="${whologin != 0}">
+                                    <a href="<%=FormNo%>meLogout">
+                                       로그아웃
+                                    </a>
+                                    <a href="<%=FormNo%>meUpdate">
+                                       회원 정보 수정
+                                    </a>   
+                                 </c:if>
+                                 <c:if test="${whologin == 1}">
+                                    <a href="<%=FormNo%>meDelete&id=${sessionScope.loginfo.user_id}">
+                                       회원 탈퇴
+                                    </a>
+                                 </c:if>
+                                 <c:if test="${whologin == 2}">
+                                    <a href="<%=FormNo%>meList">
+                                       회원 목록 보기
+                                    </a>
+                                 </c:if>
+                              </li>
+                           </ul>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="canvas__open">
-                	<i class="fa fa-bars">
-                	</i>
+                   <i class="fa fa-bars">
+                   </i>
                 </div>
             </div>
         </div>
-		<div class="container">
-	            <div class="row">
-	                <div class="col-lg-12">
-	                    <nav class="header__menu mobile-menu">
-	                        <ul>
-	                            <li class="active">
-	                            	<a href="<%=FormNo%>main">
-	                            		home
-	                            	</a>
-	                            </li>
-	                            <li>
-	                            	<a href="<%=FormNo%>noList">
-	                            		공지사항
-	                            	</a>
-	                            </li>
-	                            <li>
-	                            	<a href="<%=FormNo%>prList">
-	                            		상품 게시판
-	                            	</a>
-	                            </li>
-	                            <li>
-	                            	<a href="<%=FormNo%>coList">
-	                            		커뮤니티
-	                            	</a>
-	                            </li>
-	                            <li>
-	                            	<a href="<%=FormNo%>qnaList">
-	                            		Q&A
-	                            	</a>
-	                            </li>
-	                        </ul>
-	                    </nav>
-	                </div>
-	            </div>
-	        </div>
+      <div class="container">
+               <div class="row">
+                   <div class="col-lg-12">
+                       <nav class="header__menu mobile-menu">
+                           <ul>
+                               <li class="active">
+                                  <a href="<%=FormNo%>main">
+                                     home
+                                  </a>
+                               </li>
+                               <li>
+                               
+                                  <a href="<%=FormNo%>noList">
+                                     공지사항
+                                  </a>
+                                  
+                               </li>
+                               <li>
+                                  <a href="<%=FormNo%>prList">
+                                     상품 게시판
+                                  </a>
+                               </li>
+                               <li>
+                                  <a href="<%=FormNo%>coList">
+                                     커뮤니티
+                                  </a>
+                               </li>
+                               <li>
+                                  <a href="<%=FormNo%>qnaList">
+                                     Q&A
+                                  </a>
+                               </li>
+                           </ul>
+                       </nav>
+                       <c:if test="${not empty requestScope.errmsg}">
+      <div class="alert alert-danger alert-dismissible">
+           <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+           &nbsp;&nbsp;&nbsp;<strong>${requestScope.errmsg}</strong>
+      </div>
+   </c:if>
+                   </div>
+               </div>
+           </div>
         </header>
-	<br>
-	<!-- Js Plugins -->
-	<script src="js/jquery-3.3.1.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/jquery.nice-select.min.js"></script>
-	<script src="js/jquery.barfiller.js"></script>
-	<script src="js/jquery.magnific-popup.min.js"></script>
-	<script src="js/jquery.slicknav.js"></script>
-	<script src="js/owl.carousel.min.js"></script>
-	<script src="js/jquery.nicescroll.min.js"></script>
-	<script src="js/main.js"></script>
+   <br>
+   <!-- Js Plugins -->
+   <script src="js/jquery-3.3.1.min.js"></script>
+   <script src="js/bootstrap.min.js"></script>
+   <script src="js/jquery.nice-select.min.js"></script>
+   <script src="js/jquery.barfiller.js"></script>
+   <script src="js/jquery.magnific-popup.min.js"></script>
+   <script src="js/jquery.slicknav.js"></script>
+   <script src="js/owl.carousel.min.js"></script>
+   <script src="js/jquery.nicescroll.min.js"></script>
+   <script src="js/main.js"></script>
 </body>
 </html>

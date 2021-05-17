@@ -16,7 +16,6 @@
 	<link rel="stylesheet" href="css/bootstrap.min2.css" type="text/css">
 </head>
 <body>
-	mypage입니다.
 	 <!-- Page Preloder -->
     <div id="preloder">
         <div class="loader"></div>
@@ -47,11 +46,11 @@
                                 <img src="img/blog/details/blog-author.jpg" alt="">
                             </div>
                             <div class="blog__details__author__text">
-                                <h6>아이디 : v4545kim</h6>
-                                <h6>이름 : 김순섭</h6>
-                                <h6>닉네임 : 기수서</h6>
+                                <h6>아이디 : ${loginfo.id}</h6>
+                                <h6>이름 : ${loginfo.name}</h6>
+                                <h6>닉네임 : ${loginfo.nickname}</h6>
                             </div>
-                            <a href="#" class="primary-btn">회원 정보 수정</a>
+                            <a href="<%=FormNo%>meUpdate&id=${sessionScope.loginfo.user_id}" class="primary-btn">회원 정보 수정</a>
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <a href="#" class="primary-btn"> 1 follwer / 2 following</a>
                         </div>
@@ -62,94 +61,116 @@
     </section>
     <!-- Blog Details Section End -->
 
-	<!-- 게시판 리스트 시작 -->
 	<div class="container col-sm-offset-<%=offset%> col-sm-<%=mywidth%>">
 		<div class="panel panel-primary">
 			<ul class="nav nav-tabs">
-				<li class="nav-item"><a class="nav-link active"
-					data-bs-toggle="tab" href="#home">찜</a></li>
-				<li class="nav-item"><a class="nav-link" data-bs-toggle="tab"
-					href="#profile">커뮤니티</a></li>
-					<li class="nav-item"><a class="nav-link" data-bs-toggle="tab"
-					href="#profile">Q&A</a></li>
-					<li class="nav-item"><a class="nav-link" data-bs-toggle="tab"
-					href="#profile">상품</a></li>
+				<li class="active"><a class="nav-link active" data-toggle="tab"
+					href="#zim">찜</a></li>
+				<li><a class="nav-link" data-toggle="tab" href="#community">커뮤니티</a></li>
+				<li><a class="nav-link" data-toggle="tab" href="#qna">Q&A</a></li>
+				<li><a class="nav-link" data-toggle="tab" href="#product">상품</a></li>
 			</ul>
-			<table class="table table-hover">
-				<thead>
-					<tr>
-						<th scope="col">글 번호</th>
-						<th scope="col">카테고리</th>
-						<th scope="col" colspan="2">글 제목</th>
-						<th scope="col">날짜</th>
-					</tr>
-				</thead>
-				<tbody>
-					<c:forEach var="bean" items="${requestScope.lists}">
-						<tr>
-							<th scope="row">${bean.no}</th>
-							<td>${bean.category}</td>
-							<td colspan="2"><a
-								href="<%=FormNo%>qnaDetailView&no=${bean.no}">${bean.title}</a></td>
-							<td>${bean.date}</td>
-						</tr>
-					</c:forEach>
-					<tr>
-						<td align="center" colspan="4">
-							<form action="" class="form-inline" role="form" name="myform"
-								method="get">
-								<div class="form-group">
-									<select id="mode" name="mode" class="form-control">
-										<option value="all" selected="selected">선택하세요.
-										<option>제목
-										<option>제목+내용
-										<option>작성자
-										<option>불편사항
-										<option>이용문의
-									</select>
-								</div>
-								&nbsp;&nbsp;
-								<div class="form-group">
-									<input type="text" class="form-control" name="keyword"
-										id="keyword">
-								</div>
-								&nbsp;&nbsp;
-								<button class="btn btn-default" type="button"
-									onclick="search();">검색</button>
-								&nbsp;&nbsp; ${pageInfo.pagingStatus}
-							</form>
-						</td>
-						<td>
-							<button class="btn btn-default" type="button"
-								onclick="writeForm();">글 등록</button>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-			<div align="center">
-				<footer>${pageInfo.pagingHtml}</footer>
+			<div class="tab-content">
+				<div id="zim" class="tab-pane fade in active">
+					<h3>찜</h3>
+					<table class="table table-hover">
+						<thead>
+							<tr>
+								<th scope="col">글 번호</th>
+								<th scope="col">카테고리</th>
+								<th scope="col" colspan="2">글 제목</th>
+								<th scope="col">날짜</th>
+								<th scope="col"><a href="#">더보기</a></th>
+							</tr>
+						</thead>
+						<tbody>
+							<c:forEach var="bean" items="${requestScope.lists}">
+								<tr>
+									<th scope="row">${bean.no}</th>
+									<td>${bean.category}</td>
+									<td colspan="2"><a
+										href="<%=FormNo%>qnaDetailView&no=${bean.no}">${bean.title}</a></td>
+									<td>${bean.date}</td>
+								</tr>
+							</c:forEach>
+						</tbody>
+					</table>
+				</div>
+				<div id="community" class="tab-pane fade in">
+					<table class="table table-hover">
+						<thead>
+							<tr>
+								<th scope="col">글 번호</th>
+								<th scope="col">카테고리</th>
+								<th scope="col" colspan="2">글 제목</th>
+								<th scope="col">날짜</th>
+								<th scope="col"><a href="#">더보기</a></th>
+							</tr>
+						</thead>
+						<tbody>
+							<c:forEach var="bean" items="${requestScope.colists}">
+								<tr>
+									<th scope="row">${bean.no}</th>
+									<td>${bean.category}</td>
+									<td colspan="2"><a
+										href="<%=FormNo%>qnaDetailView&no=${bean.no}">${bean.title}</a></td>
+									<td>${bean.date}</td>
+								</tr>
+							</c:forEach>
+						</tbody>
+					</table>
+				</div>
+				<div id="qna" class="tab-pane fade in">
+					<table class="table table-hover">
+						<thead>
+							<tr>
+								<th scope="col">글 번호</th>
+								<th scope="col">카테고리</th>
+								<th scope="col" colspan="2">글 제목</th>
+								<th scope="col">날짜</th>
+								<th scope="col"><a href="#">더보기</a></th>
+							</tr>
+						</thead>
+						<tbody>
+							<c:forEach var="bean" items="${requestScope.qnalists}">
+								<tr>
+									<th scope="row">${bean.no}</th>
+									<td>${bean.category}</td>
+									<td colspan="2"><a
+										href="<%=FormNo%>qnaDetailView&no=${bean.no}">${bean.title}</a></td>
+									<td>${bean.date}</td>
+								</tr>
+							</c:forEach>
+						</tbody>
+					</table>
+				</div>
+				<div id="product" class="tab-pane fade in">
+					<table class="table table-hover">
+						<thead>
+							<tr>
+								<th scope="col">글 번호</th>
+								<th scope="col">판매 상태</th>
+								<th scope="col" colspan="2">글 제목</th>
+								<th scope="col">날짜</th>
+								<th scope="col"><a href="#">더보기</a></th>
+							</tr>
+						</thead>
+						<tbody>
+							<c:forEach var="bean" items="${requestScope.prlists}">
+								<tr>
+									<th scope="row">${bean.no}</th>
+									<td>${bean.state}</td>
+									<td colspan="2"><a
+										href="<%=FormNo%>qnaDetailView&no=${bean.no}">${bean.title}</a></td>
+									<td>${bean.date}</td>
+								</tr>
+							</c:forEach>
+						</tbody>
+					</table>
+				</div>
 			</div>
 		</div>
 	</div>
-	<br>
-	<br>
-	<br>
-	<br>
-	<script type="text/javascript">
-		/* 필드 검색 상태 보존 */
-		$('#mode option').each(function() {
-			if ($(this).val() == '${pageInfo.mode}') {
-				$(this).attr('selected', 'selected');
-			}
-		});
-
-		$('#keyword').val('${pageInfo.keyword}');
-	</script>
-	<br>
-	<!-- 게시판 리스트 끝 -->
-
-
-
 </body>
 </html>
 <%@ include file="./../common/footer.jsp"%>

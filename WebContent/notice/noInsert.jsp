@@ -62,13 +62,13 @@
         <div class="container">
             <div class="checkout__form">
                 <form name="insertform" action="<%=FormYes%>" method="post">
-                   <input type="hidden" name="command" value="qnaInsert">
+                   <input type="hidden" name="command" value="noInsert">
                    <input type="hidden" name="writer" value="${sessionScope.loginfo.id}">
                     <div class="row">
                         <div class="col-lg-12 col-md-6">
                             <h6 class="coupon__code">
                                <span class="icon_tag_alt">
-                               </span> 공시사항 작성
+                               </span> 공지사항 작성
                            </h6>
                             <div class="row">
                                 <div class="col-lg-8">

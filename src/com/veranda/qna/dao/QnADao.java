@@ -139,7 +139,7 @@ public class QnADao extends SuperDao{
 		return 0;
 	}
 
-	public int selectTotalCount(String mode, String keyword) {
+	public int SelectTotalCount(String mode, String keyword) {
 		
 		PreparedStatement pstmt = null ;
 		

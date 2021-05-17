@@ -29,7 +29,7 @@ meInsert=com.veranda.member.controller.MemberInsertController
 #meList=com.veranda.member.controller.MemberListController
 #meLogin=com.veranda.member.controller.MemberLoginControllerController
 #meLogout=com.veranda.member.controller.MemberLogoutController
-#meUpdate=com.veranda.member.controller.MemberUpdateController
+meUpdate=com.veranda.member.controller.MemberUpdateController
 #meZipcheck=com.veranda.member.controller.MemberZipcheckController
 ############### Notice Section ####################
 #noDelete=com.veranda.notice.controller.NoticeDeleteController
@@ -54,10 +54,10 @@ prList=com.veranda.product.controller.ProductListController
 #pkList=com.veranda.productkeyword.controller.ProductKeywordListController
 ############### Q&A Section ####################
 #qnaDelete=com.veranda.qna.controller.QnADeleteController
-#qnaDetailView=com.veranda.qna.controller.QnADetailViewController
+qnaDetailView=com.veranda.qna.controller.QnADetailViewController
 qnaInsert=com.veranda.qna.controller.QnAInsertController
 qnaList=com.veranda.qna.controller.QnAListController
-#qnaUpdate=com.veranda.qna.controller.QnAUpdateController
+qnaUpdate=com.veranda.qna.controller.QnAUpdateController
 ############### Q&A Comment Section ####################
 #qcoDelete=com.veranda.qnacomment.controller.QnACommentDeleteController
 #qcoInsert=com.veranda.qnacomment.controller.QnACommentInsertController

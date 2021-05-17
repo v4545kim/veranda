@@ -1,5 +1,3 @@
-
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="./../common/common.jsp"%>
@@ -62,29 +60,15 @@
          }
 
          /* 카테고리 선택 체크 */
-         var category = document.insertform.category.value;
+         var category = document.insertform.state.value;
          if (category == "-") {
             alert('카테고리를 선택해주세요.');
-            document.insertform.category.focus();
+            document.insertform.state.focus();
             return false;
 
          }
       }
    </script>
-<style type="text/css">
-   .checkout__input_2 input{
-      height: 350px;
-      width: 100%;
-      border: 1px solid #e1e1e1;
-      font-size: 14px;
-      color: #666666;
-      padding-left: 20px;
-      margin-bottom: 20px;
-   }
-   .checkout__input_2 p span {
-        color: #f08632;
-   }
-</style>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="css/bootstrap.min2.css" type="text/css">
 </head>
@@ -105,26 +89,25 @@
                </tr>
             </thead>
             <tbody>
-               <c:forEach var="bean" items="${requestScope.lists}">   
-                  <tr class="table-active">
+               <c:forEach var="bean" items="${requestScope.lists}">
+                  <tr>
                      <th scope="row">${bean.no}</th>
                      <td>${bean.state}</td>
-                     <td colspan="2">${bean.title}</td>
+                     <td colspan="2"><a href="<%=FormNo%>prDetailView&no=${bean.no}">${bean.title}</a></td>
                      <td>${bean.date}</td>
                   </tr>
                </c:forEach>
-               
                <tr>
                   <td align="center" colspan="4">
                      <form action="" class="form-inline" role="form" name="myform" method="get"> 
                         <div class="form-group">
                            <select id="mode" name="mode" class="form-control">
                               <option value="all" selected="selected">선택하세요.
-                              <option >제목
-                              <option >제목+내용
-                              <option >작성자
-                              <option >불편사항
-                              <option >이용문의
+                              <option>제목
+                              <option>제목+내용
+                              <option>작성자
+                              <option>불편사항
+                              <option>이용문의
                            </select>
                         </div>
                         &nbsp;&nbsp;
@@ -145,6 +128,9 @@
                </tr>
             </tbody>
          </table>
+         <div align="center">
+            <footer>${pageInfo.pagingHtml}</footer>
+         </div>
       </div>
    </div>
    <br><br><br><br>
@@ -161,15 +147,6 @@
    <br>
    <!-- 게시판 리스트 끝 -->
 
-   <a href="<%=FormNo%>neighborPage">이웃페이지</a>   
-
-
-
 </body>
 </html>
 <jsp:include page="/common/footer.jsp"></jsp:include>
-               
-          
-               
-
-
