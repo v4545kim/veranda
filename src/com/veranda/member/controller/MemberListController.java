@@ -14,6 +14,8 @@ public class MemberListController extends SuperClass{
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		super.doGet(request, response);
 		
+		
+		
 	}
 	
 	@Override

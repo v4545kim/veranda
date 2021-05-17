@@ -106,8 +106,8 @@
                               <option>제목
                               <option>제목+내용
                               <option>작성자
-                              <option>불편사항
-                              <option>이용문의
+                              <option>판매완료
+                              <option>판매중
                            </select>
                         </div>
                         &nbsp;&nbsp;
@@ -146,6 +146,8 @@
    </script>
    <br>
    <!-- 게시판 리스트 끝 -->
+   
+<a href = "<%=FormNo%>neighborPage">이웃페이지</a>
 
 </body>
 </html>

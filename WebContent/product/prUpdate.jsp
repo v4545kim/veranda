@@ -137,8 +137,8 @@ int rightButton = 2;
                               <div>
                                  <select id="state" name="state" class="form">
                                     <option value="-" selected="selected">선택하세요
-                                    <option value="">불편사항
-                                    <option value="">이용문의
+                                    <option value="">판매중
+                                    <option value="">판매완료
                                  </select>
                               </div>
                            </div>

@@ -1,4 +1,4 @@
-package com.veranda.qna.controller;
+package com.veranda.follow.controller;
 
 import java.io.IOException;
 
@@ -7,32 +7,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.veranda.common.controller.SuperClass;
-import com.veranda.qna.dao.QnADao;
 
-public class QnADeleteController extends SuperClass{
+public class FollowCancelController extends SuperClass{
 
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		super.doGet(request, response);
-
-		super.doGet(request, response);
-		System.out.println("222222");
-
-		int no = Integer.parseInt(request.getParameter("no"));
-
-		QnADao dao = new QnADao();
-		int cnt = -1;
-		System.out.println("1111111111");
-		cnt = dao.DeleteData(no);
-
-		new QnAListController().doGet(request, response);
-		
 	}
 	
 	@Override
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		super.doPost(request, response);
-		
 	}
 	
 }

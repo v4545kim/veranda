@@ -28,7 +28,7 @@ public class MemberLoginController extends SuperClass{
    
    @Override
    public boolean validate(HttpServletRequest request) {
-      boolean isCheck = true ;
+      boolean isCheck = true ;// true이면 유효성 검사에 문제가 없습니다.
       
       if(this.user_id.length() < 5 || this.user_id.length() > 15) {
          request.setAttribute(super.PREFIX + "user_id", "아이디는 5글자 이상 15글자 이하이어야 합니다."); 
@@ -56,7 +56,7 @@ public class MemberLoginController extends SuperClass{
       String gotopage = "" ;
       
       if (this.validate(request) == true) {
-        System.out.println("user");
+    
          System.out.println("유효성 검사에 문제 없음");
          
          MemberDao dao = new MemberDao();
@@ -66,7 +66,7 @@ public class MemberLoginController extends SuperClass{
             System.out.println("로그인 실패");
             String message = "아이디나 비밀 번호가 잘못되었습니다." ;
             super.setErrorMessage(message);
-            gotopage = "/members/main.jsp" ;
+            gotopage = "/members/meLogin.jsp" ;
             super.GotoPage(gotopage);             
          } else { 
             System.out.println("로그인 성공");
@@ -74,12 +74,11 @@ public class MemberLoginController extends SuperClass{
             
             super.session.setAttribute("loginfo", bean);
             
-            gotopage = "/common/main.jsp" ;
-            
+            gotopage = "/common/main.jsp" ;           
             super.GotoPage(gotopage);
          }
          
-               } else { // 문제가 있음
+      } else { // 문제가 있음
          // 이전에 입력했던 정보를 다시 바인딩해줍니다.
          request.setAttribute("user_id", this.user_id);
          request.setAttribute("user_pwd", this.user_pwd);
@@ -88,4 +87,4 @@ public class MemberLoginController extends SuperClass{
          super.GotoPage(gotopage);  
       }
    }
-}
+}   

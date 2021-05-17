@@ -31,7 +31,7 @@
 				return false;
 			} // 닉네임 길이 확인 if문 끝
 			
-			var url = '<%=FormNo%>memNickcheck&nickname='+nickname;
+			var url = '<%=FormNo%>meNickcheck&nickname='+nickname;
 			window.open(url,'mywin','height=150,width=300');
 			
 			if (document.joinform.isCheck.value == 'false') { /* 중복 체크 확인 */

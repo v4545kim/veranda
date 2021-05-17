@@ -40,37 +40,29 @@ int rightButton = 2;
 						<th scope="row">${bean.no}</th>
 						<td>${bean.category}</td>
 						<td colspan="2">${bean.title}</td>
+						<c:if test="${bean.user_no == sessionScope.loginfo.no}">
+							<td><a href="<%=FormNo%>myPage">${writer}</a></td>
+						</c:if>
+						<c:if test="${bean.user_no != sessionScope.loginfo.no}">
+							<td><a href="<%=FormNo%>neighborPage&writer=${writer}">${writer}</a></td>
+						</c:if>
 						<td>${bean.date}</td>
-						<td>
-							<a href="<%=FormNo%>qnaUpdate&no=${bean.no}&${requestScope.parameters}">
-								수정
-							</a>
-						</td>
-						<td>
-							<a href="">
-								삭제
-							</a>
-						</td>
+						<c:if test="${bean.user_no == sessionScope.loginfo.no}">
+							<td>
+								<a href="<%=FormNo%>qnaUpdate&no=${bean.no}&${requestScope.parameters}">
+									수정
+								</a>
+							</td>
+							<td>
+								<a href="<%=FormNo%>qnaDelete&no=${bean.no}&${requestScope.parameters}">
+									삭제
+								</a>
+							</td>
+						</c:if>
 					</tr>
 				</table>
 				<div class="card-body">
 					<h5 class="card-title">내용 칸 : ${bean.content}</h5>
-				</div>
-				<div align="center">
-					<img class="upImg" src="img/shop/product-1.jpg">
-					<img class="upImg" src="img/shop/product-1.jpg">
-					<br>
-					<img class="upImg" src="img/shop/product-1.jpg">
-					<img class="upImg" src="">
-					<br>
-					<img class="upImg" src="">
-					<img class="upImg" src="">
-					<br>
-					<img class="upImg" src="">
-					<img class="upImg" src="">
-					<br>
-					<img class="upImg" src="">
-					<img class="upImg" src="">
 				</div>
 			</div>
 		</div>

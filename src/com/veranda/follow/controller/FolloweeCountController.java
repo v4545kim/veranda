@@ -1,4 +1,4 @@
-package com.veranda.product.controller;
+package com.veranda.follow.controller;
 
 import java.io.IOException;
 
@@ -7,34 +7,26 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.veranda.common.controller.SuperClass;
-import com.veranda.product.dao.ProductDao;
+import com.veranda.follow.dao.FollowDao;
 
-
-
-public class ProductDeleteController extends SuperClass{
-
+public class FolloweeCountController extends SuperClass{
    @Override
    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
       super.doGet(request, response);
-      System.out.println("222222");
       
-      int no = Integer.parseInt(request.getParameter("no")) ;
+      FollowDao dao = new FollowDao();
+      int user_no = 1;
+      int followeeCnt = dao.FolloweeCount(user_no);
       
+      System.out.println("팔로잉 수 : " +  followeeCnt);
       
-
-      ProductDao dao = new ProductDao();
-      int cnt = -1;
-      System.out.println("1111111111");
-      cnt = dao.DeleteData(no);
-      
-      new ProductListController().doGet(request, response);
+      request.setAttribute("followeeCnt", followeeCnt);
       
    }
    
    @Override
    public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+      // TODO Auto-generated method stub
       super.doPost(request, response);
-      
    }
-   
 }

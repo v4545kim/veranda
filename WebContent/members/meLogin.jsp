@@ -20,10 +20,7 @@ function insertForm(){
    /* alert('회원가입 페이지'); */
    location.href='<%=FormNo%>meInsert';
 }
-function mainForm(){
-      /* alert('메인 페이지'); */
-      location.href='<%=FormNo%>main';
-   }
+
 </script>
 </head>
 <body>
@@ -43,7 +40,7 @@ function mainForm(){
                        <input type="text" class="form-control" id="id" placeholder="아이디를 입력해 주세요." 
                           name="id" data-toggle="tooltip" title="아이디는 5글자 이상 15글자 이하로 입력해주세요."
                           value="${user_id}">
-                       <span class="form-control-static err">${errid}</span>
+                       <span class="form-control-static err" >${erruser_id}</span>
                      </div>
                 </div>
                 <div class="form-group">
@@ -53,12 +50,12 @@ function mainForm(){
                           placeholder="비밀 번호를 입력해 주세요." name="pwd"
                           value="${user_pwd}">
                           
-                       <span class="form-control-static err">${errpassword}</span>
+                       <span class="form-control-static err">${erruser_pwd}</span>
                      </div>
                 </div>                
                 <div class="form-group">        
                      <div class="col-sm-offset-<%=offset%> col-sm-<%=mywidth%>">
-                       <button type="submit" class="btn btn-warning btn-block" onclick="mainForm();"> 로그인 </button>
+                       <button type="submit" class="btn btn-warning btn-block" > 로그인 </button>
                        &nbsp;&nbsp;&nbsp;
             <br>
                        <p class="text-center">아이디가 없으신가요? 

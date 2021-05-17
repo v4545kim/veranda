@@ -29,45 +29,6 @@
 			
 		});
 		
-		
-		
-		
-		
-		function checkForm() {
-			/* 제목 길이 체크 */
-			var title = document.insertform.title.value;
-			if (title.length < 2) {
-				alert('제목은 최소 2자리 이상이어야 합니다.');
-				document.insertform.title.focus();
-				return false;
-			} else if (title.length > 20) {
-				alert('제목은 최소 20자리 이하이어야 합니다.');
-				document.insertform.title.focus();
-				return false;
-			}
-			
-
-			/* 내용 길이 체크 */
-			var content = document.insertform.content.value;
-			if (content.length < 5) {
-				alert('내용은 최소 5자리 이상이어야 합니다.');
-				document.insertform.content.focus();
-				return false;
-			} else if (content.length > 1333) {
-				alert('내용은 최대 1333자리 이하이어야 합니다.');
-				document.insertform.content.focus();
-				return false;
-			}
-
-			/* 카테고리 선택 체크 */
-			var category = document.insertform.category.value;
-			if (category == "-") {
-				alert('카테고리를 선택해주세요.');
-				document.insertform.category.focus();
-				return false;
-
-			}
-		}
 	</script>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="css/bootstrap.min2.css" type="text/css">
@@ -82,9 +43,11 @@
 			<table class="table table-hover">
 				<thead>
 					<tr>
+					
 						<th scope="col">글 번호</th>
 						<th scope="col">카테고리</th>
 						<th scope="col" colspan="2">글 제목</th>
+						<th scope="col">작성자</th>
 						<th scope="col">날짜</th>
 					</tr>
 				</thead>
@@ -94,20 +57,20 @@
 							<th scope="row">${bean.no}</th>
 							<td>${bean.category}</td>
 							<td colspan="2"><a href="<%=FormNo%>qnaDetailView&no=${bean.no}">${bean.title}</a></td>
+							<td>${bean.content}</td>
 							<td>${bean.date}</td>
 						</tr>
 					</c:forEach>
 					<tr>
-						<td align="center" colspan="4">
+						<td align="center" colspan="5">
 							<form action="" class="form-inline" role="form" name="myform" method="get"> 
 								<div class="form-group">
 									<select id="mode" name="mode" class="form-control">
-										<option value="all" selected="selected">선택하세요.
-										<option>제목
-										<option>제목+내용
-										<option>작성자
-										<option>불편사항
-										<option>이용문의
+										<option value="qna_title" selected="selected">제목
+										<option value="qna_content">내용
+										<option value="">작성자
+										<option value="">불편사항
+										<option value="">이용문의
 									</select>
 								</div>
 								&nbsp;&nbsp;
@@ -121,9 +84,11 @@
 							</form>
 						</td>
 						<td>
-							<button class="btn btn-default" type="button" onclick="writeForm();">
-								글 등록
-							</button>
+							<c:if test="${whologin != 0}">
+								<button class="btn btn-default" type="button" onclick="writeForm();">
+									글 등록
+								</button>
+							</c:if>
 						</td>
 					</tr>
 				</tbody>

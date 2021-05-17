@@ -18,17 +18,17 @@ coList=com.veranda.community.controller.CommunityListController
 #ckList=com.veranda.communitykeyword.controller.CommunityKeywordListController
 ############### Follow Section ####################
 #foDelete=com.veranda.follow.controller.FollowDeleteController
-#foInsert=com.veranda.follow.controller.FollowInsertController
+foApply=com.veranda.follow.controller.FollowApplyController
 #foList=com.veranda.follow.controller.FollowListController
 ############### Member Section ####################
 #meDelete=com.veranda.member.controller.MemberDeleteController
 #meDetailView=com.veranda.member.controller.MemberDetailViewController
 meIdcheck=com.veranda.member.controller.MemberIdcheckController
-#meNickcheck=com.veranda.member.controller.MemberNickcheckController
+meNickcheck=com.veranda.member.controller.MemberNickcheckController
 meInsert=com.veranda.member.controller.MemberInsertController
 #meList=com.veranda.member.controller.MemberListController
-#meLogin=com.veranda.member.controller.MemberLoginControllerController
-#meLogout=com.veranda.member.controller.MemberLogoutController
+meLogin=com.veranda.member.controller.MemberLoginController
+meLogout=com.veranda.member.controller.MemberLogoutController
 meUpdate=com.veranda.member.controller.MemberUpdateController
 #meZipcheck=com.veranda.member.controller.MemberZipcheckController
 ############### Notice Section ####################
@@ -38,11 +38,11 @@ noInsert=com.veranda.notice.controller.NoticeInsertController
 noList=com.veranda.notice.controller.NoticeListController
 noUpdate=com.veranda.notice.controller.NoticeUpdateController
 ############### Product Section ####################
-#prDelete=com.veranda.product.controller.ProductDeleteController
+prDelete=com.veranda.product.controller.ProductDeleteController
 prDetailView=com.veranda.product.controller.ProductDetailViewController
 prInsert=com.veranda.product.controller.ProductInsertController
 prList=com.veranda.product.controller.ProductListController
-#prUpdate=com.veranda.product.controller.ProductUpdateController
+prUpdate=com.veranda.product.controller.ProductUpdateController
 #prZim=com.veranda.product.controller.ProductZimController
 ############### ProductComment Section ####################
 #pcoDelete=com.veranda.productcomment.controller.ProductCommentDeleteController
@@ -53,7 +53,7 @@ prList=com.veranda.product.controller.ProductListController
 #pkInsert=com.veranda.productkeyword.controller.ProductKeywordInsertController
 #pkList=com.veranda.productkeyword.controller.ProductKeywordListController
 ############### Q&A Section ####################
-#qnaDelete=com.veranda.qna.controller.QnADeleteController
+qnaDelete=com.veranda.qna.controller.QnADeleteController
 qnaDetailView=com.veranda.qna.controller.QnADetailViewController
 qnaInsert=com.veranda.qna.controller.QnAInsertController
 qnaList=com.veranda.qna.controller.QnAListController
@@ -63,6 +63,5 @@ qnaUpdate=com.veranda.qna.controller.QnAUpdateController
 #qcoInsert=com.veranda.qnacomment.controller.QnACommentInsertController
 #qcotList=com.veranda.qnacomment.controller.QnACommentListController
 #qcoUpdate=com.veranda.qnacomment.controller.QnACommentUpdateController
-myPage=com.veranda.member.controller.MemberPageController
 myPage=com.veranda.member.controller.MemberPageController
 neighborPage=com.veranda.member.controller.MemberNeighborPageController

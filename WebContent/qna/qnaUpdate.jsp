@@ -105,8 +105,9 @@ int rightButton = 2;
 		<div class="container">
 			<div class="checkout__form">
 				<form name="insertform" action="<%=FormYes%>" method="post">
-					<input type="hidden" name="command" value="qnaInsert"> 
-					<input type="hidden" name="writer" value="${sessionScope.loginfo.id}">
+					<input type="hidden" name="command" value="qnaUpdate"> 
+					<input type="hidden" name="writer" value="${sessionScope.loginfo.no}">
+					<input type="hidden" name="no" value="${bean.no}">
 					<div class="row">
 						<div class="col-lg-12 col-md-6">
 							<h6 class="coupon__code">
@@ -137,8 +138,8 @@ int rightButton = 2;
 										<div>
 											<select id="category" name="category" class="form">
 												<option value="-" selected="selected">선택하세요
-												<option value="">불편사항
-												<option value="">이용문의
+												<option value="불편사항">불편사항
+												<option value="이용문의">이용문의
 											</select>
 										</div>
 									</div>
@@ -152,9 +153,7 @@ int rightButton = 2;
 												*
 											</span>
 									</p>
-									<textarea rows="10" cols="125" name="content" style="resize: none;">
-										${bean.content}
-									</textarea>
+									<textarea rows="10" cols="125" name="content" style="resize: none;">${bean.content}</textarea>
 								</div>
 							</div>
 							<br>

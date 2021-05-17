@@ -46,54 +46,31 @@ p {
   
     
      <section class="blog-details spad">
-      
-        <div class="container" >
+        <div class="container">
             <div class="row d-flex justify-content-center">
-            
-            
-                <div class="col-lg-8" >
+                <div class="col-lg-8">
                     <div class="blog__details__content">
                         <div class="blog__details__author">
                             <div class="blog__details__author__pic">
-                             
-                                <img src="img/picto/farmer.png" alt="">
+                                <img src="img/blog/details/blog-author.jpg" alt="">
                             </div>
                             <div class="blog__details__author__text">
-                                <h6>이웃정보</h6>
-                                <div style="position: inherit;">
-                               
-                                <p class="groove" >
-                                
-                                <td>닉네임</td>
-                                <br>
-                                <td>아이디</td>
-
-                                
-                                &nbsp;&nbsp;&nbsp;&nbsp;
-                                &nbsp;&nbsp;&nbsp;&nbsp;
-                                
-                                
-                                <button type="button" class="btn btn-deault"></button>
-                                <a href="#" class="primary-btn">
-                                 &nbsp;&nbsp;&nbsp;&nbsp; 
-                                 &nbsp;&nbsp;&nbsp;&nbsp;
-                                 &nbsp;&nbsp;&nbsp;&nbsp;
-                                <img alt="" src="img/picto/follow.png" width="40">
-                                <br>
-                                <td>follower · following</td>
-                                
-                                
-                                </a>        
-                                </p>
-                                 
-                                
-                                 </div>
-                               </div>
-                           </div>
-                       </div>
+                                <h6>아이디 : ${bean.user_id}</h6>
+                                <h6>닉네임 : ${bean.user_nickname}</h6>
+                                <h6>이름 : ${bean.user_name}</h6>
+                                <h6>생년월일 : ${bean.user_birth}</h6>
+                                <h6>성별 : ${bean.user_gender}</h6>
+                                <h6>우편번호 : ${bean.user_postcode}</h6>
+                                <h6>주소 : ${bean.user_address} ${bean.user_address1} ${bean.user_address_mark}</h6>
+                            </div>
+                            <a href="<%=FormNo%>foApply&follower=${bean.no}&followee=${sessionScope.loginfo.no}" class="primary-btn">팔로우</a>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <a href="#" class="primary-btn"> 1 follwer / 2 following</a>
+                        </div>
                     </div>
                 </div>
-            </div>     
+            </div>
+        </div>
     </section>
     </body>
     

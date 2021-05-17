@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
 <!DOCTYPE html>
 <%@ include file="./../common/common.jsp"%>
 <%
@@ -10,6 +11,7 @@ int formleft = 3;
 int formright = twelve - formleft;
 int rightButton = 2;
 %>
+
 
 <html>
 <head>
@@ -47,7 +49,7 @@ int rightButton = 2;
                      </a>
                   </td>
                   <td>
-                     <a href="">
+                     <a href="<%=FormNo%>prDelete&no=${bean.no}&${requestScope.parameters}">
                         삭제
                      </a>
                   </td>
@@ -57,24 +59,22 @@ int rightButton = 2;
                <h5 class="card-title">내용 칸 : ${bean.content}</h5>
             </div>
             <div align="center">
-               <img class="upImg" src="img/shop/product-1.jpg">
-               <img class="upImg" src="img/shop/product-1.jpg">
-               <br>
-               <img class="upImg" src="img/shop/product-1.jpg">
-               <img class="upImg" src="">
-               <br>
-               <img class="upImg" src="">
-               <img class="upImg" src="">
-               <br>
-               <img class="upImg" src="">
-               <img class="upImg" src="">
-               <br>
-               <img class="upImg" src="">
-               <img class="upImg" src="">
+               <img class="upImg" src="upload/${bean.image1}">
+               <img class="upImg" src="upload/${bean.image2}"><br><br>
+               <img class="upImg" src="upload/${bean.image3}">
+               <img class="upImg" src="upload/${bean.image4}"><br><br>
+               <img class="upImg" src="upload/${bean.image5}">
+               <img class="upImg" src="upload/${bean.image6}"><br><br>
+               <img class="upImg" src="upload/${bean.image7}">
+               <img class="upImg" src="upload/${bean.image8}"><br><br>
+               <img class="upImg" src="upload/${bean.image9}">
+               <img class="upImg" src="upload/${bean.image10}"><br><br>
+            
             </div>
          </div>
       </div>
    </div>
+      
 </body>
 </html>
 <jsp:include page="/common/footer.jsp"></jsp:include>

@@ -58,9 +58,10 @@ int formright = twelve - formleft;
     <section class="checkout spad">
         <div class="container">
             <div class="checkout__form">
-                <form name="insertform" action="<%=FormYes%>" method="post">
+                <form name="insertform" action="<%=FormYes%>" method="post" enctype="multipart/form-data">
                    <input type="hidden" name="command" value="prInsert">
                    <input type="hidden" name="writer" value="${sessionScope.loginfo.id}">
+                   <input type="hidden" name="prod_state" value="1">
                     <div class="row">
                         <div class="col-lg-12 col-md-6">
                             <h6 class="coupon__code">
@@ -99,6 +100,16 @@ int formright = twelve - formleft;
                                  </span>
                            </p>
                            <textarea name="content" rows="10" cols="125" style="resize: none;"></textarea>
+                           file: <input type="file" name="image1" accept="image/jpg, image/jpeg, image/png" value="${bean.image1}" id="image1"><br>
+                           file: <input type="file" name="image2" accept="image/jpg, image/jpeg, image/png" value="${bean.image2}" id="image2"><br>
+                           file: <input type="file" name="image3" accept="image/jpg, image/jpeg, image/png" value="${bean.image3}" id="image3"><br>
+                           file: <input type="file" name="image4" accept="image/jpg, image/jpeg, image/png" value="${bean.image4}" id="image4"><br>
+                           file: <input type="file" name="image5" accept="image/jpg, image/jpeg, image/png" value="${bean.image5}" id="image5"><br>
+                           file: <input type="file" name="image6" accept="image/jpg, image/jpeg, image/png" value="${bean.image6}" id="image6"><br>
+                           file: <input type="file" name="image7" accept="image/jpg, image/jpeg, image/png" value="${bean.image7}" id="image7"><br>
+                           file: <input type="file" name="image8" accept="image/jpg, image/jpeg, image/png" value="${bean.image8}" id="image8"><br>
+                           file: <input type="file" name="image9" accept="image/jpg, image/jpeg, image/png" value="${bean.image9}" id="image9"><br>
+                           file: <input type="file" name="image10" accept="image/jpg,image/jpeg, image/png" value="${bean.image10}" id="image10"><br>
                         </div>
                      </div>
                      <br>

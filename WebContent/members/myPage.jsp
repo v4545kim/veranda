@@ -46,9 +46,13 @@
                                 <img src="img/blog/details/blog-author.jpg" alt="">
                             </div>
                             <div class="blog__details__author__text">
-                                <h6>아이디 : ${loginfo.id}</h6>
-                                <h6>이름 : ${loginfo.name}</h6>
-                                <h6>닉네임 : ${loginfo.nickname}</h6>
+                                <h6>아이디 : ${loginfo.user_id}</h6>
+                                <h6>닉네임 : ${loginfo.user_nickname}</h6>
+                                <h6>이름 : ${loginfo.user_name}</h6>
+                                <h6>생년월일 : ${loginfo.user_birth}</h6>
+                                <h6>성별 : ${loginfo.user_gender}</h6>
+                                <h6>우편번호 : ${loginfo.user_postcode}</h6>
+                                <h6>주소 : ${loginfo.user_address} ${loginfo.user_address1} ${loginfo.user_address_mark}</h6>
                             </div>
                             <a href="<%=FormNo%>meUpdate&id=${sessionScope.loginfo.user_id}" class="primary-btn">회원 정보 수정</a>
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -85,13 +89,15 @@
 						</thead>
 						<tbody>
 							<c:forEach var="bean" items="${requestScope.lists}">
-								<tr>
-									<th scope="row">${bean.no}</th>
-									<td>${bean.category}</td>
-									<td colspan="2"><a
-										href="<%=FormNo%>qnaDetailView&no=${bean.no}">${bean.title}</a></td>
-									<td>${bean.date}</td>
-								</tr>
+								<c:if test="${bean.user_no == sessionScope.loginfo.no}">
+									<tr>
+										<th scope="row">${bean.no}</th>
+										<td>${bean.category}</td>
+										<td colspan="2"><a
+											href="<%=FormNo%>qnaDetailView&no=${bean.no}">${bean.title}</a></td>
+										<td>${bean.date}</td>
+									</tr>
+								</c:if>
 							</c:forEach>
 						</tbody>
 					</table>
@@ -109,13 +115,15 @@
 						</thead>
 						<tbody>
 							<c:forEach var="bean" items="${requestScope.colists}">
-								<tr>
-									<th scope="row">${bean.no}</th>
-									<td>${bean.category}</td>
-									<td colspan="2"><a
-										href="<%=FormNo%>qnaDetailView&no=${bean.no}">${bean.title}</a></td>
-									<td>${bean.date}</td>
-								</tr>
+								<c:if test="${bean.user_no == sessionScope.loginfo.no}">
+									<tr>
+										<th scope="row">${bean.no}</th>
+										<td>${bean.category}</td>
+										<td colspan="2"><a
+											href="<%=FormNo%>qnaDetailView&no=${bean.no}">${bean.title}</a></td>
+										<td>${bean.date}</td>
+									</tr>
+								</c:if>
 							</c:forEach>
 						</tbody>
 					</table>
@@ -133,13 +141,15 @@
 						</thead>
 						<tbody>
 							<c:forEach var="bean" items="${requestScope.qnalists}">
-								<tr>
-									<th scope="row">${bean.no}</th>
-									<td>${bean.category}</td>
-									<td colspan="2"><a
-										href="<%=FormNo%>qnaDetailView&no=${bean.no}">${bean.title}</a></td>
-									<td>${bean.date}</td>
-								</tr>
+								<c:if test="${bean.user_no == sessionScope.loginfo.no}">
+									<tr>
+										<th scope="row">${bean.no}</th>
+										<td>${bean.category}</td>
+										<td colspan="2"><a
+											href="<%=FormNo%>qnaDetailView&no=${bean.no}">${bean.title}</a></td>
+										<td>${bean.date}</td>
+									</tr>
+								</c:if>
 							</c:forEach>
 						</tbody>
 					</table>
@@ -157,13 +167,15 @@
 						</thead>
 						<tbody>
 							<c:forEach var="bean" items="${requestScope.prlists}">
-								<tr>
-									<th scope="row">${bean.no}</th>
-									<td>${bean.state}</td>
-									<td colspan="2"><a
-										href="<%=FormNo%>qnaDetailView&no=${bean.no}">${bean.title}</a></td>
-									<td>${bean.date}</td>
-								</tr>
+								<c:if test="${bean.user_no == sessionScope.loginfo.no}">
+									<tr>
+										<th scope="row">${bean.no}</th>
+										<td>${bean.state}</td>
+										<td colspan="2"><a
+											href="<%=FormNo%>qnaDetailView&no=${bean.no}">${bean.title}</a></td>
+										<td>${bean.date}</td>
+									</tr>
+								</c:if>
 							</c:forEach>
 						</tbody>
 					</table>
