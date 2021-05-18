@@ -14,6 +14,12 @@
 <head>
 	<meta charset="utf-8">
 	<link rel="stylesheet" href="css/bootstrap.min2.css" type="text/css">
+	<script>
+		function searchMore(){
+			var keyword = $('#keyword').val() ;
+			location.href='<%=FormNo%>qnaList' + '&mode=all&keyword=${sessionScope.loginfo.no} ;
+		}
+	</script>
 </head>
 <body>
 	 <!-- Page Preloder -->
@@ -52,11 +58,12 @@
                                 <h6>생년월일 : ${loginfo.user_birth}</h6>
                                 <h6>성별 : ${loginfo.user_gender}</h6>
                                 <h6>우편번호 : ${loginfo.user_postcode}</h6>
-                                <h6>주소 : ${loginfo.user_address} ${loginfo.user_address1} ${loginfo.user_address_mark}</h6>
+                                <h6>주소 : ${loginfo.user_address} ${loginfo.user_address1} ${loginfo.user_address2}</h6>
                             </div>
                             <a href="<%=FormNo%>meUpdate&id=${sessionScope.loginfo.user_id}" class="primary-btn">회원 정보 수정</a>
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <a href="#" class="primary-btn"> 1 follwer / 2 following</a>
+                            <a href="#" class="primary-btn">팔로워 : ${requestScope.followCnt}</a>
+                            <a href="#" class="primary-btn">팔로잉 : ${requestScope.followeeCnt}</a>
                         </div>
                     </div>
                 </div>
@@ -84,7 +91,7 @@
 								<th scope="col">카테고리</th>
 								<th scope="col" colspan="2">글 제목</th>
 								<th scope="col">날짜</th>
-								<th scope="col"><a href="#">더보기</a></th>
+								<th scope="col"><a href="" onclick="return serchMore();">더보기</a></th>
 							</tr>
 						</thead>
 						<tbody>
@@ -182,6 +189,93 @@
 				</div>
 			</div>
 		</div>
+		<div class="product__details__tab">
+                <div class="col-lg-12">
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab">찜</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#tabs-2" role="tab">커뮤니티</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#tabs-3" role="tab">Q&A</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#tabs-3" role="tab">상품</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="tabs-1" role="tabpanel">
+                            <div class="row d-flex justify-content-center">
+                                <div class="col-lg-8">
+                                    <p>글 번호 카테고리 글 제목 등록 날짜</p>
+                                    <p>
+	                                	<c:forEach var="bean" items="${requestScope.qnalists}">
+											<c:if test="${bean.user_no == sessionScope.loginfo.no}">
+													${bean.no}
+													${bean.category}
+													<a
+														href="<%=FormNo%>qnaDetailView&no=${bean.no}">${bean.title}</a>
+													${bean.date}
+											</c:if>
+										</c:forEach>
+									</p>
+									<table>
+										<tr>
+											<td colspan="2">
+												글 번호
+											</td>
+											<td colspan="2">
+												카테고리
+											</td>
+											<td colspan="2">
+												글 제목
+											</td>
+											<td colspan="2">
+												등록 날짜
+											</td>
+										<tr>
+									</table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="tabs-2" role="tabpanel">
+                            <div class="row d-flex justify-content-center">
+                                <div class="col-lg-8">
+                                    <p>This delectable Strawberry Pie is an extraordinary treat filled with sweet and
+                                        tasty chunks of delicious strawberries. Made with the freshest ingredients, one
+                                        bite will send you to summertime. Each gift arrives in an elegant gift box and
+                                        arrives with a greeting card of your choice that you can personalize online!2
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="tabs-3" role="tabpanel">
+                            <div class="row d-flex justify-content-center">
+                                <div class="col-lg-8">
+                                    <p>This delectable Strawberry Pie is an extraordinary treat filled with sweet and
+                                        tasty chunks of delicious strawberries. Made with the freshest ingredients, one
+                                        bite will send you to summertime. Each gift arrives in an elegant gift box and
+                                        arrives with a greeting card of your choice that you can personalize online!3
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="tabs-3" role="tabpanel">
+                            <div class="row d-flex justify-content-center">
+                                <div class="col-lg-8">
+                                    <p>This delectable Strawberry Pie is an extraordinary treat filled with sweet and
+                                        tasty chunks of delicious strawberries. Made with the freshest ingredients, one
+                                        bite will send you to summertime. Each gift arrives in an elegant gift box and
+                                        arrives with a greeting card of your choice that you can personalize online!3
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 	</div>
 </body>
 </html>

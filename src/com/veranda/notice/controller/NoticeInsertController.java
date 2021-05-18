@@ -29,11 +29,11 @@ public class NoticeInsertController extends SuperClass{
    
       bean = new Notice();
       
-      bean.setContent(request.getParameter("notice_content"));
-      bean.setDate(request.getParameter("notice_date"));
-      bean.setNo(Integer.parseInt(request.getParameter("notice_no")));
-      bean.setTitle(request.getParameter("notice_title"));
-      bean.setUser_no(Integer.parseInt(request.getParameter("user_no")));
+      bean.setContent(request.getParameter("content"));     
+      bean.setTitle(request.getParameter("title"));
+      
+      System.out.println(bean.getContent());
+      System.out.println(bean.getTitle());
       
       System.out.println("bean information");
       System.out.println(bean.toString()); 

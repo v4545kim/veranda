@@ -11,6 +11,7 @@ import com.veranda.common.controller.SuperClass;
 import com.veranda.common.utility.Paging;
 import com.veranda.community.dao.CommunityDao;
 import com.veranda.community.vo.Community;
+import com.veranda.member.vo.Member;
 
 
 public class CommunityMyListController extends SuperClass{
@@ -19,9 +20,12 @@ public class CommunityMyListController extends SuperClass{
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		super.doGet(request, response);
 		
+		Member loginfo = (Member) super.session.getAttribute("loginfo");
+		int no = loginfo.getNo();
+		
 		String pageNumber = "1";
-		String mode = "all";
-		String keyword = "";
+		String mode = "user_no";
+		String keyword = ""+no;
 		
 		String contextPath = request.getContextPath();
 		String url = contextPath + "/veranda?command=coList";

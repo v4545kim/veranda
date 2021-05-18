@@ -1,14 +1,23 @@
 package com.veranda.qnacomment.vo;
 
 public class QnAComment {
-	private int no; // Q&A 댓글 번호
-	private int qna_no; // Q&A 글 번호
+	private int qna_no; // Q&A 댓글 번호
+	private int no; // Q&A 글 번호
 	private int user_no; // 회원 식별 번호
+	private String writer; // Q&A 댓글 작성자
 	private String content; // 댓글 내용
 	private String date; // 댓글 등록 날짜
 	
 	public QnAComment() {
 		// TODO Auto-generated constructor stub
+	}
+	
+	public String getWriter() {
+		return writer;
+	}
+
+	public void setWriter(String writer) {
+		this.writer = writer;
 	}
 
 	public int getNo() {

@@ -11,13 +11,21 @@ public class Member {
 	private int user_postcode; // 회원 주소
 	private String user_address; // 회원 주소
 	private String user_address1; // 회원 주소
-	private String user_address_mark; // 회원 주소
+	private String user_address2; // 회원 주소
 	private String user_birth; // 회원 생년월일
 	private String user_gender; // 회원 성별
 	private String user_remark; // 회원 탈퇴 시 사용될 비고란
 
 	public Member() {
 		// TODO Auto-generated constructor stub
+	}
+	
+	public String getUser_address2() {
+		return user_address2;
+	}
+
+	public void setUser_address2(String user_address2) {
+		this.user_address2 = user_address2;
 	}
 
 	public int getNo() {
@@ -98,14 +106,6 @@ public class Member {
 
 	public void setUser_address1(String user_address1) {
 		this.user_address1 = user_address1;
-	}
-
-	public String getUser_address_mark() {
-		return user_address_mark;
-	}
-
-	public void setUser_address_mark(String user_address_mark) {
-		this.user_address_mark = user_address_mark;
 	}
 
 	public String getUser_birth() {

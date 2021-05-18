@@ -61,8 +61,8 @@ public class QnAInsertController extends SuperClass {
 			isCheck = false;
 		}
 
-		if (bean.getContent().length() < 5 || bean.getContent().length() > 30) {
-			request.setAttribute(super.PREFIX + "content", "글내용은 5자리 이상 30자리 이하이어야 합니다.");
+		if (bean.getContent().length() < 5 || bean.getContent().length() > 1000) {
+			request.setAttribute(super.PREFIX + "content", "글내용은 5자리 이상 1000자리 이하이어야 합니다.");
 			isCheck = false;
 		}
 		return isCheck;

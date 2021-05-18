@@ -18,7 +18,8 @@ public class NoticeListController extends SuperClass{
    @Override
    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
       super.doGet(request, response);
-      
+      String notice_title = request.getParameter("notice_title");
+      System.out.println("notice_title : "+notice_title);
       FlowParameters parameters
       = new FlowParameters (
                request.getParameter("pageNumber"),

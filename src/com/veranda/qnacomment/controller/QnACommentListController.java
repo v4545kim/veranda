@@ -8,8 +8,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.veranda.common.controller.SuperClass;
-import com.veranda.common.utility.FlowParameters;
-import com.veranda.common.utility.Paging;
 import com.veranda.qnacomment.dao.QnACommentDao;
 import com.veranda.qnacomment.vo.QnAComment;
 
@@ -19,41 +17,17 @@ public class QnACommentListController extends SuperClass{
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		super.doGet(request, response);
 		
-		FlowParameters parameters
-		= new FlowParameters(
-				request.getParameter("pageNumber"), 
-				request.getParameter("mode"), 
-				request.getParameter("keyword"));
-		
-		System.out.println("parameter list : ");
-		System.out.println(parameters.toString());
-		
-		String contextPath = request.getContextPath();
-		String url = contextPath + "/veranda?command=qnaList";
+		// 글 번호
+		int no = Integer.parseInt(request.getParameter("no"));
 		
 		QnACommentDao dao = new QnACommentDao();
 		
-		int totalCount = dao.SelectTotalCount(parameters.getMode(), parameters.getKeyword());
-		System.out.println("total data size : " + totalCount);
+		// 댓글을 작성한 작성자, 식별번호, 글 번호, 댓글 번호, 댓글 내용, 댓글 등록 날짜를 담는 메소드
+		List<QnAComment> colists = dao.SelectData(no);
 		
-		Paging pageInfo = new Paging(
-				parameters.getPageNumber(), 
-				totalCount, 
-				url,
-				parameters.getMode(), 
-				parameters.getKeyword());
+		request.setAttribute("colists", colists);
 		
-		List<QnAComment> lists = dao.SelectDataList(
-				pageInfo.getBeginRow(), 
-				pageInfo.getEndRow(), 
-				parameters.getMode(), 
-				parameters.getKeyword());
-		System.out.println("qna list count : " + lists.size());
-		
-		request.setAttribute("colists", lists);
-		request.setAttribute("pageInfo", pageInfo);
-		
-		request.setAttribute("parameters", parameters.toString());
+
 		
 	}
 	

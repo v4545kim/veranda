@@ -16,13 +16,13 @@
       function search(){
          var mode = $('#mode').val() ;
          var keyword = $('#keyword').val() ;
-         location.href='<%=FormNo%>qnaList' + '&mode=' + mode + '&keyword=' + keyword ;
+         location.href='<%=FormNo%>noList' + '&mode=' + mode + '&keyword=' + keyword ;
       }
       function searchAll(){
-         location.href='<%=FormNo%>qnaList';
+         location.href='<%=FormNo%>noList';
       }
       function writeForm(){
-         location.href='<%=FormNo%>qnaInsert';
+         location.href='<%=FormNo%>noInsert';
       }
       
       $(document).ready(function(){
@@ -59,14 +59,6 @@
             return false;
          }
 
-         /* 카테고리 선택 체크 */
-         var category = document.insertform.category.value;
-         if (category == "-") {
-            alert('카테고리를 선택해주세요.');
-            document.insertform.category.focus();
-            return false;
-
-         }
       }
    </script>
 <meta charset="UTF-8">
@@ -82,8 +74,7 @@
          <table class="table table-hover">
             <thead>
                <tr>
-                  <th scope="col">글 번호</th>
-                  
+                  <th scope="col">글 번호</th>                  
                   <th scope="col" colspan="2">글 제목</th>
                   <th scope="col">날짜</th>
                </tr>
@@ -102,9 +93,9 @@
                      <form action="" class="form-inline" role="form" name="myform" method="get"> 
                         <div class="form-group">
                            <select id="mode" name="mode" class="form-control">
-                              <option value="all" selected="selected">선택하세요.
-                              <option>제목
-                              <option>제목+내용
+                              
+                              <option value="notice_title" selected="selected" >제목
+                              <option value="notice_content">내용
                            
                            </select>
                         </div>
@@ -119,9 +110,11 @@
                      </form>
                   </td>
                   <td>
+                  <c:if test="${whologin == 2}">
                      <button class="btn btn-default" type="button" onclick="writeForm();">
                         글 등록
                      </button>
+                     </c:if>
                   </td>
                </tr>
             </tbody>

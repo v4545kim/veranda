@@ -90,9 +90,9 @@ int rightButton = 2;
 						<a href="<%=FormNo%>main">
 							Home
 						</a>
-						<span>
+						<a href="<%=FormNo%>qnaList">
 						 	Q&A
-						</span>
+					 	</a>
 					</div>
 				</div>
 			</div>

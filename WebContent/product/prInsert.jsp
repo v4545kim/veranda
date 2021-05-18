@@ -60,7 +60,7 @@ int formright = twelve - formleft;
             <div class="checkout__form">
                 <form name="insertform" action="<%=FormYes%>" method="post" enctype="multipart/form-data">
                    <input type="hidden" name="command" value="prInsert">
-                   <input type="hidden" name="writer" value="${sessionScope.loginfo.id}">
+                   <input type="hidden" name="writer" value="${sessionScope.loginfo.no}">
                    <input type="hidden" name="prod_state" value="1">
                     <div class="row">
                         <div class="col-lg-12 col-md-6">

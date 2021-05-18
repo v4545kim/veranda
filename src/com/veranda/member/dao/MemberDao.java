@@ -63,7 +63,7 @@ public class MemberDao extends SuperDao {
 				bean.setUser_remark(String.valueOf(rs.getString("user_remark")));
 
 				bean.setUser_address1(String.valueOf(rs.getString("user_address1")));
-				bean.setUser_address_mark(String.valueOf(rs.getString("user_address_mark")));
+				bean.setUser_address2(String.valueOf(rs.getString("user_address2")));
 				bean.setUser_postcode(Integer.parseInt(rs.getString("user_postcode")));
 
 			}

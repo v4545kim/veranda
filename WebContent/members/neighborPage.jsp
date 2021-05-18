@@ -52,7 +52,7 @@ p {
                     <div class="blog__details__content">
                         <div class="blog__details__author">
                             <div class="blog__details__author__pic">
-                                <img src="img/blog/details/blog-author.jpg" alt="">
+                                <img src="img/blog/details/blog-author.jpg">
                             </div>
                             <div class="blog__details__author__text">
                                 <h6>아이디 : ${bean.user_id}</h6>
@@ -61,11 +61,13 @@ p {
                                 <h6>생년월일 : ${bean.user_birth}</h6>
                                 <h6>성별 : ${bean.user_gender}</h6>
                                 <h6>우편번호 : ${bean.user_postcode}</h6>
-                                <h6>주소 : ${bean.user_address} ${bean.user_address1} ${bean.user_address_mark}</h6>
+                                <h6>주소 : ${bean.user_address} ${bean.user_address1} ${bean.user_address2}</h6>
                             </div>
-                            <a href="<%=FormNo%>foApply&follower=${bean.no}&followee=${sessionScope.loginfo.no}" class="primary-btn">팔로우</a>
+                            	<a href="<%=FormNo%>foApply&follower=${bean.no}&followee=${sessionScope.loginfo.no}" class="primary-btn">팔로우</a>
+                            	<a href="<%=FormNo%>foCancel&follower=${bean.no}&followee=${sessionScope.loginfo.no}" class="primary-btn">팔로우 취소</a>
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <a href="#" class="primary-btn"> 1 follwer / 2 following</a>
+                            <a href="<%=FormNo%>foList" class="primary-btn">팔로워 : ${requestScope.followCnt}</a>
+                            <a href="#" class="primary-btn">팔로잉 : ${requestScope.followeeCnt}</a>
                         </div>
                     </div>
                 </div>

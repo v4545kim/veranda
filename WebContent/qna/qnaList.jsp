@@ -47,8 +47,8 @@
 						<th scope="col">글 번호</th>
 						<th scope="col">카테고리</th>
 						<th scope="col" colspan="2">글 제목</th>
-						<th scope="col">작성자</th>
-						<th scope="col">날짜</th>
+						<th scope="col">내용</th>
+						<th scope="col">등록일자</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -56,7 +56,11 @@
 						<tr>
 							<th scope="row">${bean.no}</th>
 							<td>${bean.category}</td>
-							<td colspan="2"><a href="<%=FormNo%>qnaDetailView&no=${bean.no}">${bean.title}</a></td>
+							<td colspan="2">
+								<a href="<%=FormNo%>qnaDetailView&no=${bean.no}&user_no=${sessionScope.loginfo.no}">
+									${bean.title}
+								</a>
+							</td>
 							<td>${bean.content}</td>
 							<td>${bean.date}</td>
 						</tr>
@@ -67,8 +71,8 @@
 								<div class="form-group">
 									<select id="mode" name="mode" class="form-control">
 										<option value="qna_title" selected="selected">제목
-										<option value="qna_content">내용
 										<option value="">작성자
+										<option value="qna_content">내용
 										<option value="">불편사항
 										<option value="">이용문의
 									</select>

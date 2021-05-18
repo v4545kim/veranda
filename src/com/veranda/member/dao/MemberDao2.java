@@ -42,7 +42,7 @@ public class MemberDao2 extends SuperDao{
 				bean.setUser_remark(String.valueOf(rs.getString("user_remark")));
 
 				bean.setUser_address1(String.valueOf(rs.getString("user_address1")));
-				bean.setUser_address_mark(String.valueOf(rs.getString("user_address_mark")));
+				bean.setUser_address2(String.valueOf(rs.getString("user_address2")));
 				bean.setUser_postcode(Integer.parseInt(rs.getString("user_postcode")));
 
 	         }
@@ -59,6 +59,50 @@ public class MemberDao2 extends SuperDao{
 	         }
 	      }       
 	      return bean  ;
+	}
+
+	public int UpdateInfo(Member bean) {
+		String sql = " update members set user_nickname = ?, user_postcode = ?, user_address = ?, user_address1 = ?, user_address2 = ? ";
+		sql += " where user_no = ? ";
+
+		PreparedStatement pstmt = null;
+		int cnt = -99999;
+		try {
+			if (conn == null) {
+				super.conn = super.getConnection();
+			}
+			conn.setAutoCommit(false);
+			pstmt = super.conn.prepareStatement(sql);
+
+			pstmt.setString(1, bean.getUser_nickname());
+			pstmt.setInt(2, bean.getUser_postcode());
+			pstmt.setString(3, bean.getUser_address());
+			pstmt.setString(4, bean.getUser_address1());
+			pstmt.setString(5, bean.getUser_address2());
+			pstmt.setInt(6, bean.getNo());
+
+			cnt = pstmt.executeUpdate();
+			conn.commit();
+		} catch (Exception e) {
+			SQLException err = (SQLException) e;
+			cnt = -err.getErrorCode();
+			e.printStackTrace();
+			try {
+				conn.rollback();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		} finally {
+			try {
+				if (pstmt != null) {
+					pstmt.close();
+				}
+				super.closeConnection();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		return cnt;
 	}
 
 

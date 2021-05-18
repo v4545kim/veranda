@@ -63,7 +63,7 @@
             <div class="checkout__form">
                 <form name="insertform" action="<%=FormYes%>" method="post">
                    <input type="hidden" name="command" value="noInsert">
-                   <input type="hidden" name="writer" value="${sessionScope.loginfo.id}">
+                   <input type="hidden" name="writer" value="">
                     <div class="row">
                         <div class="col-lg-12 col-md-6">
                             <h6 class="coupon__code">
@@ -81,7 +81,7 @@
                             </div>
                             <div class="checkout__input_2">
                                 <p>글 내용<span>*</span></p>
-                                <input type="text" name="content" id="content">
+                                <input type="text" name="content" id="content" >
                             </div>
                             <button type="submit" class="site-btn" onclick="return checkForm();">
                                등록
@@ -94,3 +94,4 @@
     </section>
 </body>
 </html>
+<jsp:include page="/common/footer.jsp"></jsp:include>

@@ -15,14 +15,11 @@ public class QnADeleteController extends SuperClass{
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		super.doGet(request, response);
 
-		super.doGet(request, response);
-		System.out.println("222222");
 
 		int no = Integer.parseInt(request.getParameter("no"));
 
 		QnADao dao = new QnADao();
 		int cnt = -1;
-		System.out.println("1111111111");
 		cnt = dao.DeleteData(no);
 
 		new QnAListController().doGet(request, response);

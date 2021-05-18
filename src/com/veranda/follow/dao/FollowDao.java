@@ -178,6 +178,88 @@ public class FollowDao extends SuperDao{
         
         return cnt;
    }
+
+	public void ApplyFollow(int follower, int followee) {
+		String sql = " insert into follows(follower_no, followee_no, follow_state) ";
+		sql += "values(?,?,1) ";
+		
+		Follow bean = new Follow();
+
+		PreparedStatement pstmt = null;
+		int cnt = -1;
+		try {
+			if (conn == null) {
+				super.conn = super.getConnection();
+			}
+			conn.setAutoCommit(false);
+			pstmt = super.conn.prepareStatement(sql);
+
+			pstmt.setInt(1, follower);
+			pstmt.setInt(2, followee);
+
+			cnt = pstmt.executeUpdate();
+			conn.commit();
+		} catch (Exception e) {
+			SQLException err = (SQLException) e;
+			cnt = -err.getErrorCode();
+			e.printStackTrace();
+			try {
+				conn.rollback();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		} finally {
+			try {
+				if (pstmt != null) {
+					pstmt.close();
+				}
+				super.closeConnection();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+	}
+	public void CancelFollow(int follower, int followee) {
+		String sql = " update follows set follow_state = 0 ";
+		sql += " where follower_no = ? and followee_no = ? ";
+		
+		Follow bean = new Follow();
+
+		PreparedStatement pstmt = null;
+		int cnt = -1;
+		try {
+			if (conn == null) {
+				super.conn = super.getConnection();
+			}
+			conn.setAutoCommit(false);
+			pstmt = super.conn.prepareStatement(sql);
+
+			pstmt.setInt(1, follower);
+			pstmt.setInt(2, followee);
+
+			cnt = pstmt.executeUpdate();
+			conn.commit();
+		} catch (Exception e) {
+			SQLException err = (SQLException) e;
+			cnt = -err.getErrorCode();
+			e.printStackTrace();
+			try {
+				conn.rollback();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		} finally {
+			try {
+				if (pstmt != null) {
+					pstmt.close();
+				}
+				super.closeConnection();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		
+	}
 }
 
 

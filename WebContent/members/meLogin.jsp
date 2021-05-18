@@ -24,6 +24,7 @@ function insertForm(){
 </script>
 </head>
 <body>
+
 <div class="container col-sm-offset-<%=offset%> col-sm-<%=mywidth%>">
       <div class="panel panel-primary">
          <div class="panel-heading">
@@ -53,7 +54,8 @@ function insertForm(){
                        <span class="form-control-static err">${erruser_pwd}</span>
                      </div>
                 </div>                
-                <div class="form-group">        
+                <div class="form-group">     
+         
                      <div class="col-sm-offset-<%=offset%> col-sm-<%=mywidth%>">
                        <button type="submit" class="btn btn-warning btn-block" > 로그인 </button>
                        &nbsp;&nbsp;&nbsp;
@@ -66,5 +68,6 @@ function insertForm(){
          </div>
       </div>
    </div>
+
 </body>
 </html>

@@ -17,7 +17,7 @@ coList=com.veranda.community.controller.CommunityListController
 #ckInsert=com.veranda.communitykeyword.controller.CommunityKeywordInsertController
 #ckList=com.veranda.communitykeyword.controller.CommunityKeywordListController
 ############### Follow Section ####################
-#foDelete=com.veranda.follow.controller.FollowDeleteController
+foCancel=com.veranda.follow.controller.FollowCancelController
 foApply=com.veranda.follow.controller.FollowApplyController
 #foList=com.veranda.follow.controller.FollowListController
 ############### Member Section ####################
@@ -59,9 +59,9 @@ qnaInsert=com.veranda.qna.controller.QnAInsertController
 qnaList=com.veranda.qna.controller.QnAListController
 qnaUpdate=com.veranda.qna.controller.QnAUpdateController
 ############### Q&A Comment Section ####################
-#qcoDelete=com.veranda.qnacomment.controller.QnACommentDeleteController
-#qcoInsert=com.veranda.qnacomment.controller.QnACommentInsertController
+qcoDelete=com.veranda.qnacomment.controller.QnACommentDeleteController
+qcoInsert=com.veranda.qnacomment.controller.QnACommentInsertController
 #qcotList=com.veranda.qnacomment.controller.QnACommentListController
-#qcoUpdate=com.veranda.qnacomment.controller.QnACommentUpdateController
+qcoUpdate=com.veranda.qnacomment.controller.QnACommentUpdateController
 myPage=com.veranda.member.controller.MemberPageController
 neighborPage=com.veranda.member.controller.MemberNeighborPageController

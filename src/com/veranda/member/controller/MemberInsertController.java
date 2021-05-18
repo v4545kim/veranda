@@ -47,7 +47,7 @@ public class MemberInsertController extends SuperClass{
 		bean.setUser_postcode(Integer.parseInt(request.getParameter("pastcode")));
 		bean.setUser_address(request.getParameter("address"));
 		bean.setUser_address1(request.getParameter("address1"));
-		bean.setUser_address_mark(request.getParameter("address_mark"));
+		bean.setUser_address2(request.getParameter("address2"));
 		
 		
 		MemberDao dao = new MemberDao();

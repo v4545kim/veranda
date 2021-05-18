@@ -37,10 +37,10 @@ public class NoticeUpdateController extends SuperClass{
       
       bean  = new Notice();
       bean.setContent(request.getParameter("content"));
-      bean.setDate(request.getParameter("date"));      
+   //   bean.setDate(request.getParameter("date"));      
       bean.setNo(Integer.parseInt(request.getParameter("no")));
       bean.setTitle(request.getParameter("title"));
-      bean.setUser_no(Integer.parseInt(request.getParameter("user_no")));
+   //   bean.setUser_no(Integer.parseInt(request.getParameter("user_no")));
       
       System.out.println("bean information");
       System.out.println(bean.toString());

@@ -25,7 +25,7 @@ public class QnADetailViewController extends SuperClass {
 		
 		writer = dao.SelectWriter(no);
 		// 게시글 클릭 시 댓글도 같이 나오게 한다.
-//		new QnACommentListController().doGet(request, response);
+		new QnACommentListController().doGet(request, response);
 		
 		
 		

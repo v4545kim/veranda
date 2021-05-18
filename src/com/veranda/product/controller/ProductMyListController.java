@@ -9,19 +9,23 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.veranda.common.controller.SuperClass;
 import com.veranda.common.utility.Paging;
+import com.veranda.member.vo.Member;
 import com.veranda.product.dao.ProductDao;
 import com.veranda.product.vo.Product;
 
 public class ProductMyListController extends SuperClass{
 
-   @Override
-   public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-      super.doGet(request, response);
-      
-      String pageNumber = "1";
-		String mode = "all";
-		String keyword = "";
+	@Override
+	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		super.doGet(request, response);
 		
+		Member loginfo = (Member) super.session.getAttribute("loginfo");
+		int no = loginfo.getNo();
+		
+		String pageNumber = "1";
+		String mode = "user_no";
+		String keyword = ""+no;
+
 		String contextPath = request.getContextPath();
 		String url = contextPath + "/veranda?command=prList";
 		

@@ -201,7 +201,6 @@ public class QnADao extends SuperDao {
 
 		sql += " ) where ranking between ? and ? ";
 
-		System.out.println(sql);
 		List<QnA> lists = new ArrayList<QnA>();
 		try {
 			if (this.conn == null) {
