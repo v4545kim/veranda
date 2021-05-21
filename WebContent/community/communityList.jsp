@@ -25,7 +25,7 @@
 		function search() {
 			var mode = $('#mode').val();
 			var keyword = $('#keyword').val();
-			location.href='<%=FormNo%>coList' + '&mode=' + mode + '&keyword=' + keyword;
+			location.href='<%=FormNo%>coList&mode=' + mode + '&keyword=' + keyword;
 		}
 	
 		function writeForm() {
@@ -115,15 +115,14 @@
 									<div class="form-group">
 										<select id="mode" name="mode" class="form-control">
 											<option value="all" selected="selected">무엇을 찾을까요?
-											<option value="subject">제목
-											<option value="subCon">제목+내용
-											<option value="writer">작성자
-											<option value="free">자유게시판
-											<option value="info">정보공유
-											<option value="product">베란다뽐내기
+											<option value="com_title">제목
+											<option value="com_content">내용
+											<option value="com_category">카테고리명
 										</select>
 									</div>
+									
 									&nbsp;&nbsp;
+									
 									<div class="form-group">
 										<input type="text" class="form-control" name="keyword" id="keyword"> 
 									</div>

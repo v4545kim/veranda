@@ -44,7 +44,7 @@ public class QnAUpdateController extends SuperClass{
 		System.out.println(toString());
 
 		if (this.validate(request) == true) {
-			System.out.println("qnas insert validation check success");
+			System.out.println("qnas update validation check success");
 			QnADao dao = new QnADao();
 			int cnt = -1;
 			cnt = dao.UpdateData(bean);
@@ -52,7 +52,7 @@ public class QnAUpdateController extends SuperClass{
 			new QnADetailViewController().doGet(request, response);
 
 		} else {
-			System.out.println("qnas insert validation check failure");
+			System.out.println("qnas update validation check failure");
 
 			request.setAttribute("bean", bean);
 			String gotopage = "/qna/qnaUpdate.jsp";

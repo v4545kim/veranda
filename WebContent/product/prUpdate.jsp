@@ -69,6 +69,10 @@ int rightButton = 2;
    .checkout__input_2 p span {
         color: #f08632;
    }
+   .checkout__input_2 input{
+          height: 30;
+       width: 250;
+   }
 </style>
 </head>
 <body>
@@ -105,8 +109,8 @@ int rightButton = 2;
       <div class="container">
          <div class="checkout__form">
             <form name="insertform" action="<%=FormYes%>" method="post">
-               <input type="hidden" name="command" value="prInsert"> 
-               <input type="hidden" name="writer" value="${sessionScope.loginfo.id}">
+               <input type="hidden" name="command" value="prUpdate"> 
+               <input type="hidden" name="writer" value="${sessionScope.loginfo.no}">
                <div class="row">
                   <div class="col-lg-12 col-md-6">
                      <h6 class="coupon__code">
@@ -137,8 +141,8 @@ int rightButton = 2;
                               <div>
                                  <select id="state" name="state" class="form">
                                     <option value="-" selected="selected">선택하세요
-                                    <option value="">판매중
-                                    <option value="">판매완료
+                                    <option value="0">판매중
+                                    <option value="1">판매완료
                                  </select>
                               </div>
                            </div>
@@ -148,11 +152,22 @@ int rightButton = 2;
                         <div class="checkout__input_2">
                            <p>
                               글 내용
-                                 <span>
-                                    *
-                                 </span>
+	                           <span>
+	                              *
+	                           </span>
                            </p>
                            <textarea rows="10" cols="125" name="content" style="resize: none;">${bean.content}</textarea>
+                           
+                           file: <input type="file" class="insertImg"  name="image1" accept="image/jpg, image/jpeg, image/png" value="${bean.image1}" id="image1"><br>
+                           file: <input type="file" class="insertImg"  name="image2" accept="image/jpg, image/jpeg, image/png" value="${bean.image2}" id="image2"><br>
+                           file: <input type="file" class="insertImg"  name="image3" accept="image/jpg, image/jpeg, image/png" value="${bean.image3}" id="image3"><br>
+                           file: <input type="file" class="insertImg"  name="image4" accept="image/jpg, image/jpeg, image/png" value="${bean.image4}" id="image4"><br>
+                           file: <input type="file" class="insertImg"  name="image5" accept="image/jpg, image/jpeg, image/png" value="${bean.image5}" id="image5"><br>
+                           file: <input type="file" class="insertImg"  name="image6" accept="image/jpg, image/jpeg, image/png" value="${bean.image6}" id="image6"><br>
+                           file: <input type="file" class="insertImg"  name="image7" accept="image/jpg, image/jpeg, image/png" value="${bean.image7}" id="image7"><br>
+                           file: <input type="file" class="insertImg"  name="image8" accept="image/jpg, image/jpeg, image/png" value="${bean.image8}" id="image8"><br>
+                           file: <input type="file" class="insertImg"  name="image9" accept="image/jpg, image/jpeg, image/png" value="${bean.image9}" id="image9"><br>
+                           file: <input type="file" class="insertImg"  name="image10" accept="image/jpg,image/jpeg, image/png" value="${bean.image10}" id="image10"><br>
                         </div>
                      </div>
                      <br>

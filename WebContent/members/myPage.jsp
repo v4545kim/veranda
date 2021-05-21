@@ -14,12 +14,6 @@
 <head>
 	<meta charset="utf-8">
 	<link rel="stylesheet" href="css/bootstrap.min2.css" type="text/css">
-	<script>
-		function searchMore(){
-			var keyword = $('#keyword').val() ;
-			location.href='<%=FormNo%>qnaList' + '&mode=all&keyword=${sessionScope.loginfo.no} ;
-		}
-	</script>
 </head>
 <body>
 	 <!-- Page Preloder -->
@@ -83,26 +77,19 @@
 			</ul>
 			<div class="tab-content">
 				<div id="zim" class="tab-pane fade in active">
-					<h3>찜</h3>
 					<table class="table table-hover">
 						<thead>
 							<tr>
 								<th scope="col">글 번호</th>
-								<th scope="col">카테고리</th>
 								<th scope="col" colspan="2">글 제목</th>
-								<th scope="col">날짜</th>
-								<th scope="col"><a href="" onclick="return serchMore();">더보기</a></th>
 							</tr>
 						</thead>
 						<tbody>
-							<c:forEach var="bean" items="${requestScope.lists}">
+							<c:forEach var="bean" items="${requestScope.prZimlists}">
 								<c:if test="${bean.user_no == sessionScope.loginfo.no}">
 									<tr>
-										<th scope="row">${bean.no}</th>
-										<td>${bean.category}</td>
-										<td colspan="2"><a
-											href="<%=FormNo%>qnaDetailView&no=${bean.no}">${bean.title}</a></td>
-										<td>${bean.date}</td>
+										<th scope="row">${bean.prod_no}</th>
+										<td colspan="2"><a href="<%=FormNo%>prDetailView&no=${bean.prod_no}">${bean.prod_title}</a></td>
 									</tr>
 								</c:if>
 							</c:forEach>
@@ -117,7 +104,6 @@
 								<th scope="col">카테고리</th>
 								<th scope="col" colspan="2">글 제목</th>
 								<th scope="col">날짜</th>
-								<th scope="col"><a href="#">더보기</a></th>
 							</tr>
 						</thead>
 						<tbody>
@@ -127,7 +113,7 @@
 										<th scope="row">${bean.no}</th>
 										<td>${bean.category}</td>
 										<td colspan="2"><a
-											href="<%=FormNo%>qnaDetailView&no=${bean.no}">${bean.title}</a></td>
+											href="<%=FormNo%>coDetailView&no=${bean.no}">${bean.title}</a></td>
 										<td>${bean.date}</td>
 									</tr>
 								</c:if>
@@ -143,7 +129,6 @@
 								<th scope="col">카테고리</th>
 								<th scope="col" colspan="2">글 제목</th>
 								<th scope="col">날짜</th>
-								<th scope="col"><a href="#">더보기</a></th>
 							</tr>
 						</thead>
 						<tbody>
@@ -169,7 +154,6 @@
 								<th scope="col">판매 상태</th>
 								<th scope="col" colspan="2">글 제목</th>
 								<th scope="col">날짜</th>
-								<th scope="col"><a href="#">더보기</a></th>
 							</tr>
 						</thead>
 						<tbody>
@@ -179,7 +163,7 @@
 										<th scope="row">${bean.no}</th>
 										<td>${bean.state}</td>
 										<td colspan="2"><a
-											href="<%=FormNo%>qnaDetailView&no=${bean.no}">${bean.title}</a></td>
+											href="<%=FormNo%>prDetailView&no=${bean.no}">${bean.title}</a></td>
 										<td>${bean.date}</td>
 									</tr>
 								</c:if>
@@ -189,93 +173,6 @@
 				</div>
 			</div>
 		</div>
-		<div class="product__details__tab">
-                <div class="col-lg-12">
-                    <ul class="nav nav-tabs" role="tablist">
-                        <li class="nav-item">
-                            <a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab">찜</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" data-toggle="tab" href="#tabs-2" role="tab">커뮤니티</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" data-toggle="tab" href="#tabs-3" role="tab">Q&A</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" data-toggle="tab" href="#tabs-3" role="tab">상품</a>
-                        </li>
-                    </ul>
-                    <div class="tab-content">
-                        <div class="tab-pane active" id="tabs-1" role="tabpanel">
-                            <div class="row d-flex justify-content-center">
-                                <div class="col-lg-8">
-                                    <p>글 번호 카테고리 글 제목 등록 날짜</p>
-                                    <p>
-	                                	<c:forEach var="bean" items="${requestScope.qnalists}">
-											<c:if test="${bean.user_no == sessionScope.loginfo.no}">
-													${bean.no}
-													${bean.category}
-													<a
-														href="<%=FormNo%>qnaDetailView&no=${bean.no}">${bean.title}</a>
-													${bean.date}
-											</c:if>
-										</c:forEach>
-									</p>
-									<table>
-										<tr>
-											<td colspan="2">
-												글 번호
-											</td>
-											<td colspan="2">
-												카테고리
-											</td>
-											<td colspan="2">
-												글 제목
-											</td>
-											<td colspan="2">
-												등록 날짜
-											</td>
-										<tr>
-									</table>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tab-pane" id="tabs-2" role="tabpanel">
-                            <div class="row d-flex justify-content-center">
-                                <div class="col-lg-8">
-                                    <p>This delectable Strawberry Pie is an extraordinary treat filled with sweet and
-                                        tasty chunks of delicious strawberries. Made with the freshest ingredients, one
-                                        bite will send you to summertime. Each gift arrives in an elegant gift box and
-                                        arrives with a greeting card of your choice that you can personalize online!2
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tab-pane" id="tabs-3" role="tabpanel">
-                            <div class="row d-flex justify-content-center">
-                                <div class="col-lg-8">
-                                    <p>This delectable Strawberry Pie is an extraordinary treat filled with sweet and
-                                        tasty chunks of delicious strawberries. Made with the freshest ingredients, one
-                                        bite will send you to summertime. Each gift arrives in an elegant gift box and
-                                        arrives with a greeting card of your choice that you can personalize online!3
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tab-pane" id="tabs-3" role="tabpanel">
-                            <div class="row d-flex justify-content-center">
-                                <div class="col-lg-8">
-                                    <p>This delectable Strawberry Pie is an extraordinary treat filled with sweet and
-                                        tasty chunks of delicious strawberries. Made with the freshest ingredients, one
-                                        bite will send you to summertime. Each gift arrives in an elegant gift box and
-                                        arrives with a greeting card of your choice that you can personalize online!3
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
 	</div>
 </body>
 </html>

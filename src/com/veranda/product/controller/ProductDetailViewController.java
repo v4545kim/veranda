@@ -10,6 +10,7 @@ import com.veranda.common.controller.SuperClass;
 
 import com.veranda.product.dao.ProductDao;
 import com.veranda.product.vo.Product;
+import com.veranda.productcomment.controller.ProductCommentListController;
 
 
 public class ProductDetailViewController extends SuperClass {
@@ -18,10 +19,28 @@ public class ProductDetailViewController extends SuperClass {
    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
       super.doGet(request, response);
       
+      
+      // 글 번호
       int no = Integer.parseInt(request.getParameter("no"));
+      String writer = null;
       
       ProductDao dao = new ProductDao();
       Product bean = dao.SelectDataByPk(no);
+      
+      writer = dao.SelectWriter(no);
+      // 게시글 클릭 시 댓글도 같이 나오게 한다.
+      new ProductCommentListController().doGet(request, response);
+      
+      
+      
+      request.setAttribute("bean", bean);
+      request.setAttribute("writer", writer);
+
+      String gotopage = "/product/prDetailView.jsp";
+      super.GotoPage(gotopage);
+      
+      
+      
 
       // 로그인 한 사람의 객체 정보
 //      Member loginfo = (Member) super.session.getAttribute("loginfo");
@@ -38,10 +57,7 @@ public class ProductDetailViewController extends SuperClass {
 
       
       
-      request.setAttribute("bean", bean);
 
-      String gotopage = "/product/prDetailView.jsp";
-      super.GotoPage(gotopage);
    }
 
    @Override

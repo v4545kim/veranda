@@ -88,6 +88,7 @@ public class FrontController extends HttpServlet {//implements SuperController{
 		String command = request.getParameter("command");		
 
 		ServletContext application = getServletContext();	
+		
 		String uploadedPath = application.getRealPath("/upload") ; //실제 업로드될 웹서버 경로
 		System.out.println( "uploadedPath : " + uploadedPath );
 		
@@ -99,6 +100,9 @@ public class FrontController extends HttpServlet {//implements SuperController{
 			MultipartRequest multi = Myutility.getMultiPartRequest(request, uploadedPath) ;
 			if( multi != null ){ //MultipartRequest 객체가 구해지면
 				command = multi.getParameter("command") ;
+				
+				System.out.println("Fontcontroller의 파일 업로드 문제 여부 검사");
+				
 				request.setAttribute("multi", multi ); //request에 바인딩
 				request.setAttribute("uploadedPath", uploadedPath ); //request에 바인딩
 			}
@@ -121,6 +125,9 @@ public class FrontController extends HttpServlet {//implements SuperController{
 			System.out.println(" mappinglist 쪽을 검토하여 주시기 바랍니다! ");
 		}
 	}	
+	
+	
+	
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");

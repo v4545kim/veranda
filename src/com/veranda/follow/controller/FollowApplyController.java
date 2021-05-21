@@ -16,12 +16,16 @@ public class FollowApplyController extends SuperClass{
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		super.doGet(request, response);
 		
+		int user_no = Integer.parseInt(request.getParameter("user_no"));
+		
 		int follower = Integer.parseInt(request.getParameter("follower"));
 		int followee = Integer.parseInt(request.getParameter("followee"));
 		
 		new FollowDao().ApplyFollow(follower, followee);
 		
 		System.out.println("팔로우 성공");
+		
+		request.setAttribute("user_no", user_no);
 		
 		new MemberNeighborPageController().doGet(request, response);
 	}

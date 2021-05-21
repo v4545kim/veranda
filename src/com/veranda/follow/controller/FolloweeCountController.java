@@ -15,7 +15,9 @@ public class FolloweeCountController extends SuperClass{
       super.doGet(request, response);
       
       FollowDao dao = new FollowDao();
-      int user_no = 1;
+      
+      int user_no = Integer.parseInt(request.getParameter("user_no"));
+      
       int followeeCnt = dao.FolloweeCount(user_no);
       
       System.out.println("팔로잉 수 : " +  followeeCnt);

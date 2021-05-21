@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
+<%@page import="java.util.Date"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ include file="./../common/common.jsp"%>
 <%
 /* position for grid system */
@@ -7,127 +10,154 @@ int offset = 2;
 int mywidth = twelve - 2 * offset;
 int formleft = 3;
 int formright = twelve - formleft;
-//int rightButton = 2 ;
+int rightButton = 2;
 %>
+
+
 <!DOCTYPE html>
-<html> 
+<html>
 <head>
-<style type="text/css">
-   .checkout__input_2 input{
-      height: 350px;
-      width: 100%;
-      border: 1px solid #e1e1e1;
-      font-size: 14px;
-      color: #666666;
-      padding-left: 20px;
-      margin-bottom: 20px;
-   }
-   .checkout__input_2 p span {
-        color: #f08632;
-   }
-   .checkout__input_2 input{
-          height: 30;
-       width: 250;
-   }
-</style>
 <script>
+      function search(){
+         var mode = $('#mode').val() ;
+         var keyword = $('#keyword').val() ;
+         location.href='<%=FormNo%>prList' + '&mode=' + mode + '&keyword=' + keyword ;
+      }
+      function searchAll(){
+         location.href='<%=FormNo%>prList';
+      }
+      function writeForm(){
+         location.href='<%=FormNo%>prInsert';
+   }
+
    $(document).ready(function() {
+
    });
+
+   function checkForm() {
+      /* 제목 길이 체크 */
+      var title = document.insertform.title.value;
+      if (title.length < 2) {
+         alert('제목은 최소 2자리 이상이어야 합니다.');
+         document.insertform.title.focus();
+         return false;
+      } else if (title.length > 20) {
+         alert('제목은 최소 20자리 이하이어야 합니다.');
+         document.insertform.title.focus();
+         return false;
+      }
+
+      /* 내용 길이 체크 */
+      var content = document.insertform.content.value;
+      if (content.length < 5) {
+         alert('내용은 최소 5자리 이상이어야 합니다.');
+         document.insertform.content.focus();
+         return false;
+      } else if (content.length > 1333) {
+         alert('내용은 최대 1333자리 이하이어야 합니다.');
+         document.insertform.content.focus();
+         return false;
+      }
+
+      /* 카테고리 선택 체크 */
+      var category = document.insertform.state.value;
+      if (category == "-") {
+         alert('카테고리를 선택해주세요.');
+         document.insertform.state.focus();
+         return false;
+
+      }
+   }
 </script>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="css/bootstrap.min2.css" type="text/css">
 </head>
 <body>
-   <!-- 게시판 입력 폼 시작 -->
+   <!-- 게시판 리스트 시작 -->
+   <div class="container col-sm-offset-<%=offset%> col-sm-<%=mywidth%>">
+      <div class="panel panel-primary">
+         <div class="panel-heading">
+            <h4>상품 게시판</h4>
+         </div>
+         <table class="table table-hover">
+            <thead>
+               <tr>
 
-    <!-- Breadcrumb Begin -->
-    <div class="breadcrumb-option">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6 col-md-6 col-sm-6">
-                    <div class="breadcrumb__text">
-                        <h2>상품게시판</h2>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-6 col-sm-6">
-                    <div class="breadcrumb__links">
-                        <a href="<%=FormNo%>main">Home</a>
-                        <span>상품게시판</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Breadcrumb End -->
+                  <th scope="col">글 번호</th>
+                  <th scope="col">카테고리</th>
+                  <th scope="col" colspan="2">글 제목</th>
+                  <th scope="col">등록일자</th>
+               </tr>
+            </thead>
+            <tbody>
+               <c:forEach var="bean" items="${requestScope.lists}">
+                  <tr>
+                     <th scope="row">${bean.no}</th>
+                     <c:if test="${bean.state == 0}">
+                     	<td>판매중</td>
+                     </c:if>
+                     <c:if test="${bean.state == 1}">
+                     	<td>판매완료</td>
+                     </c:if>
+                     <td colspan="2"><a
+                        href="<%=FormNo%>prDetailView&no=${bean.no}&user_no=${sessionScope.loginfo.no}">
+                           ${bean.title} </a></td>
 
-    <!-- Checkout Section Begin -->
-    <section class="checkout spad">
-        <div class="container">
-            <div class="checkout__form">
-                <form name="insertform" action="<%=FormYes%>" method="post" enctype="multipart/form-data">
-                   <input type="hidden" name="command" value="prInsert">
-                   <input type="hidden" name="writer" value="${sessionScope.loginfo.no}">
-                   <input type="hidden" name="prod_state" value="1">
-                    <div class="row">
-                        <div class="col-lg-12 col-md-6">
-                            <h6 class="coupon__code">
-                               <span class="icon_tag_alt">
-                               </span> 상품게시글 글 작성
-                           </h6>
-                            <div class="row">
-                                <div class="col-lg-8">
-                                    <div class="checkout__input">
-                                        <p>제목<span>*</span></p>
-                                        <input type="text" name="title" id="title">
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                           <div class="checkout__input">
-                                        <p>카테고리<span>*</span></p>
-                                        <div>
-                                         <select id="state" name="state" class="form">
-                                            <option value="-" selected="selected">선택하세요
-                                            <option value="1">판매완료
-                                            <option value="2">판매중
-                                        
-                                                    
-                                         </select>
-                                      </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="input-div">
-                            <div class="checkout__input_2">
-                               <p>
-                              글 내용
-                                 <span>
-                                    *
-                                 </span>
-                           </p>
-                           <textarea name="content" rows="10" cols="125" style="resize: none;"></textarea>
-                           file: <input type="file" name="image1" accept="image/jpg, image/jpeg, image/png" value="${bean.image1}" id="image1"><br>
-                           file: <input type="file" name="image2" accept="image/jpg, image/jpeg, image/png" value="${bean.image2}" id="image2"><br>
-                           file: <input type="file" name="image3" accept="image/jpg, image/jpeg, image/png" value="${bean.image3}" id="image3"><br>
-                           file: <input type="file" name="image4" accept="image/jpg, image/jpeg, image/png" value="${bean.image4}" id="image4"><br>
-                           file: <input type="file" name="image5" accept="image/jpg, image/jpeg, image/png" value="${bean.image5}" id="image5"><br>
-                           file: <input type="file" name="image6" accept="image/jpg, image/jpeg, image/png" value="${bean.image6}" id="image6"><br>
-                           file: <input type="file" name="image7" accept="image/jpg, image/jpeg, image/png" value="${bean.image7}" id="image7"><br>
-                           file: <input type="file" name="image8" accept="image/jpg, image/jpeg, image/png" value="${bean.image8}" id="image8"><br>
-                           file: <input type="file" name="image9" accept="image/jpg, image/jpeg, image/png" value="${bean.image9}" id="image9"><br>
-                           file: <input type="file" name="image10" accept="image/jpg,image/jpeg, image/png" value="${bean.image10}" id="image10"><br>
+                     <td>${bean.date}</td>
+                  </tr>
+               </c:forEach>
+               <tr>
+                  <td align="center" colspan="5">
+                     <form action="" class="form-inline" role="form" name="myform"
+                        method="get">
+                        <div class="form-group">
+                           <select id="mode" name="mode" class="form-control">
+
+                              <option value="prod_title" selected="selected">제목
+                              <option value="prod_content">내용
+                              <option>판매중
+                              <option>판매완료
+                           </select>
                         </div>
-                     </div>
-                     <br>
-                     <button type="submit" class="site-btn" onclick="return checkForm();">
-                        등록
-                     </button>
-                  </div>
-               </div>
-            </form>
+                        &nbsp;&nbsp;
+                        <div class="form-group">
+                           <input type="text" class="form-control" name="keyword"
+                              id="keyword">
+                        </div>
+                        &nbsp;&nbsp;
+                        <button class="btn btn-default" type="button"
+                           onclick="search();">검색</button>
+                        &nbsp;&nbsp; ${pageInfo.pagingStatus}
+                     </form>
+                  </td>
+                  <td><c:if test="${whologin != 0}">
+                        <button class="btn btn-default" type="button" onclick="writeForm();">글 등록</button>
+                  </c:if></td>
+               </tr>
+            </tbody>
+         </table>
+         <div align="center">
+            <footer>${pageInfo.pagingHtml}</footer>
          </div>
       </div>
-   </section>
-   <!-- Checkout Section End -->
+   </div>
+   <br>
+   <br>
+   <br>
+   <br>
+   <script type="text/javascript">
+      /* 필드 검색 상태 보존 */
+      $('#mode option').each(function() {
+         if ($(this).val() == '${pageInfo.mode}') {
+            $(this).attr('selected', 'selected');
+         }
+      });
 
-   <!-- 게시판 입력 폼 끝 -->
+      $('#keyword').val('${pageInfo.keyword}');
+   </script>
+   <br>
+   <!-- 게시판 리스트 끝 -->
+
 </body>
 </html>
 <jsp:include page="/common/footer.jsp"></jsp:include>

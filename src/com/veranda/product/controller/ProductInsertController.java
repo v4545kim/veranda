@@ -29,13 +29,12 @@ public class ProductInsertController extends SuperClass {
       
       MultipartRequest multi = (MultipartRequest)request.getAttribute("multi");
 
-       bean = new Product();
-       
-       
+      bean = new Product();
+      
       bean.setContent(multi.getParameter("content"));
       bean.setTitle(multi.getParameter("title"));
       
-      
+      bean.setUser_no(Integer.parseInt(multi.getParameter("writer")));
       
       bean.setImage1(multi.getFilesystemName("image1"));
       bean.setImage2(multi.getFilesystemName("image2"));
@@ -47,7 +46,6 @@ public class ProductInsertController extends SuperClass {
       bean.setImage8(multi.getFilesystemName("image8"));
       bean.setImage9(multi.getFilesystemName("image9"));
       bean.setImage10(multi.getFilesystemName("image10"));
-      
       
       if(multi.getParameter("prod_no") != null && multi.getParameter("prod_no").equals("") == false) {
          bean.setNo(Integer.parseInt(multi.getParameter("prod_no")));
@@ -69,6 +67,8 @@ public class ProductInsertController extends SuperClass {
          cnt = dao.InsertData(bean);
 
          new ProductListController().doGet(request, response);
+         
+         System.out.println("ProductInsertController에 게시글이 정상적으로 업로드 되었습니다");
 
       } else {
          System.out.println("products insert validation check failure");
@@ -88,11 +88,10 @@ public class ProductInsertController extends SuperClass {
             if (bean.getContent().length() < 5 || bean.getContent().length() > 30) {
             request.setAttribute(super.PREFIX + "content",
             "글내용은 5자리 이상 30자리 이하이어야 합니다."); isCheck = false ; } 
-                   
-              
+       
         
            if (bean.getImage1() == null || bean.getImage1().equals("")) {
-            request.setAttribute(super.PREFIX, "image" );
+            request.setAttribute(super.PREFIX + "image1", "이미지를 첨부해주세요." );
             isCheck = false;
          }
          return isCheck;     

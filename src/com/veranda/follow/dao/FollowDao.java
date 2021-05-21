@@ -49,9 +49,44 @@ public class FollowDao extends SuperDao{
          }
          return cnt ;
       }
-   // 팔로우 취소는 다시 팔로우하는 경우를 생각해서 삭제가 아닌 업데이트를 해서 0으로 바꾼다.
-   public int UpdateData(Follow bean) {
-      return 0;
+   
+   public int FollowCheck(int followee, int follower) {
+      PreparedStatement pstmt = null ;
+       
+       ResultSet rs = null ;
+       
+       int cnt = -1;
+       
+       String sql =" select count(*) as cnt from follows  ";
+       sql += " where followee_no = ? and follower_no = ?";
+       
+       
+       try {
+          if( conn == null ){ super.conn = super.getConnection() ; }
+          pstmt = super.conn.prepareStatement(sql) ;
+          
+          pstmt.setInt(1, followee);
+          pstmt.setInt(2, follower);
+          
+          rs = pstmt.executeQuery();
+          
+          if (rs.next()) {
+          cnt = rs.getInt("cnt");
+       }
+          
+       } catch (Exception e) {
+          e.printStackTrace();
+       } finally{
+          try {
+             if( rs != null ){ rs.close(); }
+             if( pstmt != null ){ pstmt.close(); }
+             super.closeConnection(); 
+          } catch (Exception e2) {
+             e2.printStackTrace(); 
+          }
+       }
+       
+       return cnt;
    }
    
    public List<Follow> GetCount(int follower_no) {
@@ -59,8 +94,6 @@ public class FollowDao extends SuperDao{
          ResultSet rs = null ;
          
          String sql =" select followee_no, follower_no from follows where followee_no = ? "; 
-         
-         //String sql =" select count(follower_no) from follows where follower_no = ? ";
          
          
          List<Follow> lists = new ArrayList<Follow>();
@@ -99,19 +132,13 @@ public class FollowDao extends SuperDao{
     
    
    }
-   public int SelectTotalCount(String mode, String keyword) {
-      // TODO Auto-generated method stub
-      return 0;
-   }
-   
-   
    
    public int FollowerCount(int user_no) {
        PreparedStatement pstmt = null ;
        
          ResultSet rs = null ;
          
-         int cnt = 0;
+         int cnt = -1;
          
          String sql =" select count(follower_no) as cnt from follows where follower_no = ? "; 
          
@@ -147,7 +174,7 @@ public class FollowDao extends SuperDao{
        
         ResultSet rs = null ;
         
-        int cnt = 0;
+        int cnt = -1;
         
         String sql =" select count(followee_no) as cnt from follows where followee_no = ? "; 
         
@@ -179,87 +206,82 @@ public class FollowDao extends SuperDao{
         return cnt;
    }
 
-	public void ApplyFollow(int follower, int followee) {
-		String sql = " insert into follows(follower_no, followee_no, follow_state) ";
-		sql += "values(?,?,1) ";
-		
-		Follow bean = new Follow();
+   public void ApplyFollow(int follower, int followee) {
+      String sql = " insert into follows(follower_no, followee_no, follow_state) ";
+      sql += "values(?,?,1) ";
+      
+      PreparedStatement pstmt = null;
+      int cnt = -1;
+      try {
+         if (conn == null) {
+            super.conn = super.getConnection();
+         }
+         conn.setAutoCommit(false);
+         pstmt = super.conn.prepareStatement(sql);
 
-		PreparedStatement pstmt = null;
-		int cnt = -1;
-		try {
-			if (conn == null) {
-				super.conn = super.getConnection();
-			}
-			conn.setAutoCommit(false);
-			pstmt = super.conn.prepareStatement(sql);
+         pstmt.setInt(1, follower);
+         pstmt.setInt(2, followee);
 
-			pstmt.setInt(1, follower);
-			pstmt.setInt(2, followee);
+         cnt = pstmt.executeUpdate();
+         conn.commit();
+      } catch (Exception e) {
+         SQLException err = (SQLException) e;
+         cnt = -err.getErrorCode();
+         e.printStackTrace();
+         try {
+            conn.rollback();
+         } catch (Exception e2) {
+            e2.printStackTrace();
+         }
+      } finally {
+         try {
+            if (pstmt != null) {
+               pstmt.close();
+            }
+            super.closeConnection();
+         } catch (Exception e2) {
+            e2.printStackTrace();
+         }
+      }
+   }
+   public void CancelFollow(int follower, int followee) {
+      String sql = " delete from follows ";
+      sql += " where follower_no = ? and followee_no = ? ";
+      
+      PreparedStatement pstmt = null;
+      int cnt = -1;
+      try {
+         if (conn == null) {
+            super.conn = super.getConnection();
+         }
+         conn.setAutoCommit(false);
+         pstmt = super.conn.prepareStatement(sql);
 
-			cnt = pstmt.executeUpdate();
-			conn.commit();
-		} catch (Exception e) {
-			SQLException err = (SQLException) e;
-			cnt = -err.getErrorCode();
-			e.printStackTrace();
-			try {
-				conn.rollback();
-			} catch (Exception e2) {
-				e2.printStackTrace();
-			}
-		} finally {
-			try {
-				if (pstmt != null) {
-					pstmt.close();
-				}
-				super.closeConnection();
-			} catch (Exception e2) {
-				e2.printStackTrace();
-			}
-		}
-	}
-	public void CancelFollow(int follower, int followee) {
-		String sql = " update follows set follow_state = 0 ";
-		sql += " where follower_no = ? and followee_no = ? ";
-		
-		Follow bean = new Follow();
+         pstmt.setInt(1, follower);
+         pstmt.setInt(2, followee);
 
-		PreparedStatement pstmt = null;
-		int cnt = -1;
-		try {
-			if (conn == null) {
-				super.conn = super.getConnection();
-			}
-			conn.setAutoCommit(false);
-			pstmt = super.conn.prepareStatement(sql);
-
-			pstmt.setInt(1, follower);
-			pstmt.setInt(2, followee);
-
-			cnt = pstmt.executeUpdate();
-			conn.commit();
-		} catch (Exception e) {
-			SQLException err = (SQLException) e;
-			cnt = -err.getErrorCode();
-			e.printStackTrace();
-			try {
-				conn.rollback();
-			} catch (Exception e2) {
-				e2.printStackTrace();
-			}
-		} finally {
-			try {
-				if (pstmt != null) {
-					pstmt.close();
-				}
-				super.closeConnection();
-			} catch (Exception e2) {
-				e2.printStackTrace();
-			}
-		}
-		
-	}
+         cnt = pstmt.executeUpdate();
+         conn.commit();
+      } catch (Exception e) {
+         SQLException err = (SQLException) e;
+         cnt = -err.getErrorCode();
+         e.printStackTrace();
+         try {
+            conn.rollback();
+         } catch (Exception e2) {
+            e2.printStackTrace();
+         }
+      } finally {
+         try {
+            if (pstmt != null) {
+               pstmt.close();
+            }
+            super.closeConnection();
+         } catch (Exception e2) {
+            e2.printStackTrace();
+         }
+      }
+      
+   }
 }
-
 

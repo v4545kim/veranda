@@ -14,6 +14,7 @@ int rightButton = 2;
 <!DOCTYPE html>
 <html>
 <head>
+
 <meta charset="UTF-8">
 
 <link rel="stylesheet" href="css/bootstrap.min2.css" type="text/css">
@@ -30,6 +31,7 @@ function checkForm() {
 		alert('제목은 최소 2자리 이상이어야 합니다.');
 		document.insertform.title.focus();
 		return false;
+		
 	} else if (title.length > 20) {
 		alert('제목은 최소 20자리 이하이어야 합니다.');
 		document.insertform.title.focus();
@@ -38,10 +40,12 @@ function checkForm() {
 	
 	/* 내용 길이 체크 */
 	var content = document.insertform.content.value;
+	
 	if (content.length < 5) {
 		alert('내용은 최소 5자리 이상이어야 합니다.');
 		document.insertform.content.focus();
 		return false;
+		
 	} else if (content.length > 1333) {
 		alert('내용은 최대 1333자리 이하이어야 합니다.');
 		document.insertform.content.focus();
@@ -50,6 +54,7 @@ function checkForm() {
 	
 	/* 카테고리 선택 체크 */
 	var category = document.insertform.category.value;
+	
 	if (category == "-") {
 		alert('카테고리를 선택해주세요.');
 		document.insertform.category.focus();
@@ -109,9 +114,12 @@ function checkForm() {
 	<section class="checkout spad">
 		<div class="container">
 			<div class="checkout__form">
-				<form name="insertform" action="<%=FormYes%>" method="post">
-					<input type="hidden" name="command" value="qnaInsert"> 
-					<input type="hidden" name="writer" value="${sessionScope.loginfo.id}">
+				<form name="insertform" action="<%=FormYes%>" method="post" enctype="multipart/form-data">
+					<input type="hidden" name="command" value="coInsert"> 
+					<input type="text" name="writer" readonly="readonly" value="${sessionScope.loginfo.user_id}">
+					<input type="text" name="user_no" readonly="readonly" value="${sessionScope.loginfo.no}">
+					<input type="text" name="comno" value="${bean.no}">
+					
 					<div class="row">
 						<div class="col-lg-12 col-md-6">
 							<h6 class="coupon__code">
@@ -161,6 +169,37 @@ function checkForm() {
 							</div>
 							
 							<br><br>
+							
+								<p> 사진 </p>
+								<input type="file" class="insertImg" name="image1" id="image1" value="${bean.image1}" accept="image/jpg, image/jpeg, image/png">
+								
+								<input type="file" class="insertImg" name="image2" id="image2" value="${bean.image2}" accept="image/jpg, image/jpeg, image/png">
+								
+								<br><br>
+								
+								<input type="file" class="insertImg" name="image3" id="image3" value="${bean.image3}" accept="image/jpg, image/jpeg, image/png">
+								
+								<input type="file" class="insertImg" name="image4" id="image4" value="${bean.image4}" accept="image/jpg, image/jpeg, image/png">
+								
+								<br><br>
+								
+								<input type="file" class="insertImg" name="image5" id="image5" value="${bean.image5}" accept="image/jpg, image/jpeg, image/png">
+								
+								<input type="file" class="insertImg" name="image6" id="image6" value="${bean.image6}" accept="image/jpg, image/jpeg, image/png">
+								
+								<br><br>
+								
+								<input type="file" class="insertImg" name="image7" id="image7" value="${bean.image7}" accept="image/jpg, image/jpeg, image/png">
+								
+								<input type="file" class="insertImg" name="image8" id="image8" value="${bean.image8}" accept="image/jpg, image/jpeg, image/png">
+								
+								<br><br>
+								
+								<input type="file" class="insertImg" name="image9" id="image9" value="${bean.image9}" accept="image/jpg, image/jpeg, image/png">
+								
+								<input type="file" class="insertImg" name="image10" id="image10" value="${bean.image10}" accept="image/jpg, image/jpeg, image/png">
+							
+							<br>
 							
 							<button type="submit" class="site-btn" onclick="return checkForm();">
 								등록

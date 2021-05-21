@@ -1,6 +1,3 @@
-common/main.jsp
-
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
 <%@ include file="./../common/common.jsp"%>
@@ -20,7 +17,7 @@ common/main.jsp
     <!-- Hero Section Begin -->
     <section class="hero">
         <div class="hero__slider owl-carousel">
-            <div class="hero__item set-bg" data-setbg="img/picto/야채1.jpg">
+            <div class="hero__item set-bg" data-setbg="img/picto/야채1.jpeg">
                 <div class="container">
                     <div class="row d-flex justify-content-center">
                         <div class="col-lg-8">

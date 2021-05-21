@@ -100,7 +100,7 @@ function checkForm() {
                <button class="btn btn-primary" onclick="history.back();" >
                   목록보기
                </button>
-            </div>
+     </div>
    </div>
    
 </body>
