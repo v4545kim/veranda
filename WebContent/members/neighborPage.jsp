@@ -38,8 +38,7 @@
                         <h2>이웃페이지</h2>
                         <ul>
                             <li>By <span>베란다에서 온 파프리카</span></li>
-                            <li>15 May 2021</li>
-                            <li>112 Views</li>
+                            <li>21 May 2021</li>
                         </ul>
                     </div>
                 </div>
@@ -61,8 +60,6 @@
                                 <h6>닉네임 : ${bean.user_nickname}</h6>
                                 <h6>생년월일 : ${bean.user_birth}</h6>
                                 <h6>성별 : ${bean.user_gender}</h6>
-                                <h6>우편번호 : ${bean.user_postcode}</h6>
-                                <h6>주소 : ${bean.user_address} ${bean.user_address1} ${bean.user_address2}</h6>
                             </div>
                             <c:if test="${cnt == 0}">
                             	<a href="<%=FormNo%>foApply&follower=${bean.no}&followee=${sessionScope.loginfo.no}&user_no=${bean.no}" class="primary-btn">팔로우</a>

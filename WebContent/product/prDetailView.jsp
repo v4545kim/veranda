@@ -66,7 +66,7 @@ int rightButton = 2;
 							<th><a href="<%=FormNo%>myPage">${writer}</a></th>
 						</c:if>
 						<c:if test="${bean.user_no != sessionScope.loginfo.no}">
-							<th><a href="<%=FormNo%>neighborPage&writer=${writer}">${writer}</a></th>
+							<th><a href="<%=FormNo%>neighborPage&writer=${writer}&user_no=${bean.user_no}">${writer}</a></th>
 						</c:if>
 						<th>${bean.date}</th>
 						<c:if test="${bean.user_no == sessionScope.loginfo.no}">

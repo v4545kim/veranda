@@ -252,8 +252,6 @@
         // iframe을 넣은 element를 보이게 한다.
         element_wrap.style.display = 'block';
     }
-    
-    
 </script>
 
 </head>
@@ -565,7 +563,9 @@
 </div> 
 <!--container end.//-->
 
-<br><br>
+
+
+<!-- <br><br>
 <article class="bg-secondary mb-3">  
 <div class="card-body text-center">
     <h3 class="text-white mt-3">Bootstrap 4 UI KIT</h3>
@@ -575,6 +575,6 @@ and product landing pages</p>   <br>
  <i class="fa fa-window-restore "></i></a></p>
 </div>
 <br><br>
-</article>
+</article> -->
 </body>
 </html>

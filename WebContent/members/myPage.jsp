@@ -161,7 +161,12 @@
 								<c:if test="${bean.user_no == sessionScope.loginfo.no}">
 									<tr>
 										<th scope="row">${bean.no}</th>
-										<td>${bean.state}</td>
+										<c:if test="${bean.state == 0}">
+					                    	<td>판매중</td>
+					                    </c:if>
+					                    <c:if test="${bean.state == 1}">
+					                    	<td>판매완료</td>
+					                    </c:if>
 										<td colspan="2"><a
 											href="<%=FormNo%>prDetailView&no=${bean.no}">${bean.title}</a></td>
 										<td>${bean.date}</td>

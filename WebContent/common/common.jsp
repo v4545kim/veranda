@@ -81,78 +81,68 @@
    <header class="header">
         <div class="header__top">
             <div class="container">
-                <div class="row">
+				<div class="row">
                     <div class="col-lg-12">
                         <div class="header__top__inner">
                             <div class="header__logo">
-                            
                                 <a href="<%=FormNo%>main"><img src="img/logo3.png" align="middle" alt="" class="logo"></a>
                             </div>
-                            <a  class=""> 
-                     <font color='green'>
-                     <c:if test="${whologin == 0}">
-                           로그인 후 이용해주세요
-                        </c:if>
-                     
-                        <c:if test="${whologin != 0}">
-                           ${sessionScope.loginfo.user_name}(${sessionScope.loginfo.user_id}) 님 반갑습니다
-                        </c:if>
-                     </font>
-                  </a>
-                            <div class="header__top__left">
-                                <div class="header__top__right__links">
-                                    <ul>
-                                       <li>
-                                         <c:if test="${whologin == 0}">
-                                    <a href="<%=FormNo%>meLogin"> 
-                                       로그인 
-                                    </a>
-                                    <a href="<%=FormNo%>meInsert">
-                                     회원 가입 
-                                     </a>
-                                 </c:if> 
-                                 <c:if test="${whologin != 0}">
-                                    <a href="<%=FormNo%>meLogout">
-                                        로그아웃 
-                                    </a>
-                                    <a href="<%=FormNo%>myPage"> 
-                                       마이 페이지 
-                                    </a>
-                                 </c:if> 
-                                 <c:if test="${whologin == 1}">
-                                    <a href="<%=FormNo%>meDelete&id=${sessionScope.loginfo.user_id}">
-                                       회원 탈퇴 
-                                    </a>
-                                 </c:if>
-                              </li>
-                                 </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                           	<a  class=""> 
+                    			<font color='green'>
+                     			<c:if test="${whologin == 0}">
+                           			로그인 후 이용해주세요
+                        		</c:if>
+                        		<c:if test="${whologin != 0}">
+                           			${sessionScope.loginfo.user_name}(${sessionScope.loginfo.user_id}) 님 반갑습니다
+                        		</c:if>
+                    			</font>
+                 				</a>
+                           	<div class="header__top__left">
+                               	<div class="header__top__right__links">
+                                   	<ul>
+                               			<li>
+                                  			<c:if test="${whologin == 0}">
+	                             				<a href="<%=FormNo%>meLogin"> 
+                               						로그인 
+	                             				</a>
+	                             				<a href="<%=FormNo%>meInsert">
+	                              					회원 가입 
+	                              				</a>
+	                          				</c:if> 
+	                          				<c:if test="${whologin != 0}">
+	                             				<a href="<%=FormNo%>meLogout">
+	                                 				로그아웃 
+	                             				</a>
+	                             				<a href="<%=FormNo%>myPage"> 
+                               						마이 페이지 
+	                             				</a>
+	                          				</c:if> 
+	                          				<c:if test="${whologin == 1}">
+	                             				<a href="<%=FormNo%>meDelete&id=${sessionScope.loginfo.user_id}"> 회원 탈퇴  </a>
+	                          				</c:if>
+	                       				</li>
+	                          		</ul>
+                               	</div>
+                           	</div>
+                       	</div>
+                   	</div>
+				</div>
                 <div class="canvas__open">
                    <i class="fa fa-bars">
                    </i>
                 </div>
             </div>
         </div>
-        
-        
-        
-        
-        
-        
-      <div class="container">
-               <div class="row">
-                   <div class="col-lg-12">
-                       <nav class="header__menu mobile-menu">
-                           <ul>
-                               <li>
-                                  <a href="<%=FormNo%>main">
-                                     home
-                                  </a>
-                               </li>
+      	<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<nav class="header__menu mobile-menu">
+                    	<ul>
+                 	       <li>
+             	              <a href="<%=FormNo%>main">
+         	                     home
+                             </a>
+						</li>
                                <li>
                                   <a href="<%=FormNo%>noList">
                                      공지사항

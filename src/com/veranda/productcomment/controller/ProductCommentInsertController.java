@@ -28,6 +28,10 @@ private ProductComment bean = null;
    
       bean = new ProductComment();
       
+      bean.setUser_no(Integer.parseInt(request.getParameter("writer")));
+      bean.setNo(Integer.parseInt(request.getParameter("no")));
+      bean.setContent(request.getParameter("content"));
+      
       System.out.println(bean.getUser_no());
       System.out.println(bean.getNo());
       System.out.println(bean.getContent());

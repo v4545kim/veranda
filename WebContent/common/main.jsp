@@ -15,6 +15,7 @@
 
 
     <!-- Hero Section Begin -->
+    
     <section class="hero">
         <div class="hero__slider owl-carousel">
             <div class="hero__item set-bg" data-setbg="img/picto/야채1.jpeg">
@@ -23,19 +24,19 @@
                         <div class="col-lg-8">
                             <div class="hero__text">
                                 <h2>Paprika from the veranda</h2>
-                                <a href="#" class="primary-btn">Our Paprika</a>
+                                <a href="#" class="primary-btn">Paprika!</a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="hero__item set-bg" data-setbg="img/hero/hero-1.jpg">
+            <div class="hero__item set-bg" data-setbg="img/picto/야채2.jpeg">
                 <div class="container">
                     <div class="row d-flex justify-content-center">
                         <div class="col-lg-8">
                             <div class="hero__text">
-                                <h2>Making your life sweeter one bite at a time!</h2>
-                                <a href="#" class="primary-btn">Our cakes</a>
+                                <h2>베란다에서 온 파프리카</h2>
+                                <a href="#" class="primary-btn">파프리카!</a>
                             </div>
                         </div>
                     </div>
@@ -43,6 +44,7 @@
             </div>
         </div>
     </section>
+    
     <!-- Hero Section End -->
 
     <!-- Testimonial Section Begin -->
